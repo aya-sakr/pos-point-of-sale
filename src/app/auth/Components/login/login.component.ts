@@ -34,7 +34,7 @@ loginForm!:FormGroup
   userData(){
     let userLogin  = this.loginForm.value 
     console.log(userLogin)
-    this.router.navigate(['/home/home'])
+    this.router.navigate(['/home'])
    localStorage.setItem('userLogin',JSON.stringify(userLogin))
   }
 }
