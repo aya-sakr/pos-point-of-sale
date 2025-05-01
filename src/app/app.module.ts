@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
+
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { LayoutComponent } from './layout/layout/layout.component';
@@ -34,7 +34,7 @@ import { ReturnModule } from './return/return.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    HomeModule,
+    
     SalesModule,
     OrdersModule,
     SettingModule,
