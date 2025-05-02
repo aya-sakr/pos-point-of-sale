@@ -7,8 +7,8 @@ import { ForgetComponent } from './Components/forget/forget.component';
 const routes: Routes = [
 
 
-  {path:'login',component:LoginComponent,title:'Login Page'},
-  {path:'forget',component:ForgetComponent,title:'Forget Page'}
+  {path:'',component:LoginComponent,},
+  {path:'forget',component:ForgetComponent,}
   
 
 ];

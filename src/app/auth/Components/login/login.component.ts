@@ -35,6 +35,6 @@ loginForm!:FormGroup
     let userLogin  = this.loginForm.value 
     console.log(userLogin)
     this.router.navigate(['/users'])
-   localStorage.setItem( 'userLogin',JSON.stringify(userLogin))
+   localStorage.setItem('userLogin',JSON.stringify(userLogin))
   }
 }

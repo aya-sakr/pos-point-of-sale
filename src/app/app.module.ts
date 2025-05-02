@@ -33,7 +33,7 @@ import { ReturnModule } from './return/return.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-
+    
     SalesModule,
     OrdersModule,
     SettingModule,
