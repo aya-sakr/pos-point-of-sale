@@ -10,16 +10,21 @@ const routes: Routes = [
   },
 
   {
-    path: '',
-    component: LayoutComponent,
-    children: [
+    path: '', component: LayoutComponent,children: [
     
-      {
-        path: 'users',
-        loadChildren: () =>
-          import('./users/users.module').then((m) => m.UsersModule),
-      },
-      { path: '', redirectTo: '/users', pathMatch: 'full' },
+      
+        {path: 'users', loadChildren: () =>import('./users/users.module').then((m) => m.UsersModule)},
+        {path: 'items', loadChildren: () =>import('./items/items.module').then((m) => m.ItemsModule)},
+        {path: 'orders', loadChildren: () =>import('./orders/orders.module').then((m) => m.OrdersModule)},
+        {path: 'reports', loadChildren: () =>import('./reports/reports.module').then((m) => m.ReportsModule)},
+        {path: 'return', loadChildren: () =>import('./return/return.module').then((m) => m.ReturnModule)},
+        {path: 'sales', loadChildren: () =>import('./sales/sales.module').then((m) => m.SalesModule)},
+        
+
+
+
+   
+        { path: '', redirectTo: '/users', pathMatch: 'full' },
     ],
   },
 

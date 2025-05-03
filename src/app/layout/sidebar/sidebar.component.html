@@ -1,20 +1,22 @@
+
+
 <div class="sidebar-section">
   <div class="sidebar-header">
-    <h3>Point Of Sale</h3>
+    <h3>Point Of <span class="sidebar-header-span">Sale</span> </h3>
   </div>
 
-  <div class="sidebar-links">
+  <div>
     <ul class="sidebar-menu">
-      <li routerLink="/users" class="nave-items">Users</li>
-      <li routerLink="/" class="nave-items">Sales</li>
-      <li routerLink="/" class="nave-items">Return</li>
-      <li routerLink="/" class="nave-items">Items</li>
+      <li class="nav-item"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link"  routerLink="/users"  >Users</a></li>
+      <li class="nav-item"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "><a  class="nav-link" routerLink="/sales"  routerLinkActive="active-link"  >Sales</a></li>
+      <li class="nav-item " routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a  class="nav-link" routerLink="/return" routerLinkActive="active-link" >Return</a></li>
+      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "><a  class="nav-link" routerLink="/items" routerLinkActive="active-link" >Items </a></li>
 
-      <li routerLink="/" class="nave-items">Orders</li>
-      <li routerLink="/" class="nave-items">Reports</li>
+      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link" routerLink="/orders" routerLinkActive="active-link"  >Orders</a> </li>
+      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link" routerLink="/reports" routerLinkActive="active-link">Reports</a> </li>
     
-      <hr />
-      <li routerLink="/" class="nave-items">Setting</li>
+      <!-- <hr />
+      <li routerLink="/" routerLinkActive="link-active" class="nave-items">Setting</li> -->
     </ul>
   </div>
 </div>

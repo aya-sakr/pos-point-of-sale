@@ -1,19 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './components/users/users.component';
 import { RouterModule } from '@angular/router';
+import { TableSharedComponent } from '../Shared/Components/table-shared/table-shared.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    
+   
+
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    RouterModule
+    RouterModule,
+    TableSharedComponent,
+    HttpClientModule
+    
+    
   ]
 })
 export class UsersModule { }

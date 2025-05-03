@@ -5,6 +5,8 @@ import { ForgetComponent } from './Components/forget/forget.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -20,6 +22,8 @@ import { RouterModule } from '@angular/router';
     AuthRoutingModule,
      RouterModule,
     ReactiveFormsModule,
+    HttpClientModule
+
     
  
   

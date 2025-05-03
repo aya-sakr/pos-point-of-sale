@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
 loginForm!:FormGroup
-  constructor(private fb:FormBuilder, private router:Router){
+allUsers:any[]=[]
+  constructor(private fb:FormBuilder, private router:Router,private authService:AuthService){
     
   }
   ngOnInit(): void {
+ 
     this.userLogin()
     
   }
@@ -37,4 +41,6 @@ loginForm!:FormGroup
     this.router.navigate(['/users'])
    localStorage.setItem('userLogin',JSON.stringify(userLogin))
   }
+
+ 
 }

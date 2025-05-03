@@ -14,6 +14,10 @@ import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { ReturnModule } from './return/return.module';
 
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+
 
 
 
@@ -24,6 +28,9 @@ import { ReturnModule } from './return/return.module';
     SidebarComponent,
     NavbarComponent,
     LayoutComponent,
+   
+   
+
     
 
  
@@ -33,16 +40,19 @@ import { ReturnModule } from './return/return.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    
+    UsersModule,
     SalesModule,
     OrdersModule,
     SettingModule,
     ItemsModule,
-    UsersModule,
     ReportsModule,
-    ReturnModule
+    ReturnModule,
+  CommonModule,
+  RouterModule,
+    
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -10,12 +10,14 @@
       background-color: #fff; 
       border-right: 1px solid #ddd;
       padding: 1rem;
+     
     }
     
     .main {
       display: flex;
       flex-direction: column;
       overflow: auto;
+     
     }
     .layout-content{
       padding: 0 3rem;

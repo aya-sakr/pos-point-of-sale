@@ -1,7 +1,27 @@
 .navbar-container {
     background-color: #fff;
     padding: 1rem 3rem;
-    display: flex;
-    align-items: center;
+   
  
-    justify-content: space-between;}
+    justify-content: space-between;
+
+    .navbar{
+         display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .dateTime{
+        // margin-right: auto;
+        font-size: 14px;
+        color: #555;
+        padding-right: 1rem;
+        padding-top: 0;
+    }
+    .avatar{
+        width: 32px;
+        height: 32px;
+    }
+
+
+
+}
