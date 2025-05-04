@@ -19,6 +19,9 @@ const routes: Routes = [
         {path: 'reports', loadChildren: () =>import('./reports/reports.module').then((m) => m.ReportsModule)},
         {path: 'return', loadChildren: () =>import('./return/return.module').then((m) => m.ReturnModule)},
         {path: 'sales', loadChildren: () =>import('./sales/sales.module').then((m) => m.SalesModule)},
+        {path: 'setting', loadChildren: () =>import('./setting/setting.module').then((m) => m.SettingModule)},
+        {path: 'profile', loadChildren: () =>import('./profile/profile.module').then((m) => m.ProfileModule)},
+         {path: 'logout', loadChildren: () =>import('./logout/logout.module').then((m) => m.LogoutModule)},
         
 
 

@@ -2,18 +2,31 @@
 
 <div class="sidebar-section">
   <div class="sidebar-header">
-    <h3>Point Of <span class="sidebar-header-span">Sale</span> </h3>
+    <h3>Point Of <span class="sidebar-highlight">Sale</span> </h3>
   </div>
 
   <div>
     <ul class="sidebar-menu">
-      <li class="nav-item"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link"  routerLink="/users"  >Users</a></li>
-      <li class="nav-item"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "><a  class="nav-link" routerLink="/sales"  routerLinkActive="active-link"  >Sales</a></li>
-      <li class="nav-item " routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a  class="nav-link" routerLink="/return" routerLinkActive="active-link" >Return</a></li>
-      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "><a  class="nav-link" routerLink="/items" routerLinkActive="active-link" >Items </a></li>
+      <li class="sidebar-items"  routerLinkActive="active-link">
+         <a class="sidebar-link"  routerLink="/users"  >Users</a>
+      </li>
+      <li class="sidebar-items"  routerLinkActive="active-link"  >
+        <a  class="sidebar-link"  routerLink="/sales"    >Sales</a>
+      </li>
+      <li class="sidebar-items " routerLinkActive="active-link" >
+         <a  class="sidebar-link"  routerLink="/return"  >Return</a>
+        </li>
+      <li class="sidebar-items" routerLinkActive="active-link" >
+        <a  class="sidebar-link"  routerLink="/items"  >Items </a>
+      </li>
 
-      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link" routerLink="/orders" routerLinkActive="active-link"  >Orders</a> </li>
-      <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true } "> <a class="nav-link" routerLink="/reports" routerLinkActive="active-link">Reports</a> </li>
+      <li class="sidebar-items" routerLinkActive="active-link" > 
+        <i class="icon-cart"></i>
+        <a class="sidebar-link"  routerLink="/orders"  >Orders</a> 
+      </li>
+      <li class="sidebar-items" routerLinkActive="active-link" > 
+        <a class="sidebar-link"  routerLink="/reports" >Reports</a> 
+      </li>
     
       <!-- <hr />
       <li routerLink="/" routerLinkActive="link-active" class="nave-items">Setting</li> -->
