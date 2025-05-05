@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Iusers } from 'src/app/Models/iusers';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class UsersService {
    constructor(private http:HttpClient) { 
     
    }
-   getAllUsers(){
-     return this.http.get(this.apiUrl)
+   getAllUsers():Observable<Iusers[]>{
+     return this.http.get<Iusers[]>(this.apiUrl)
        
    }
 }

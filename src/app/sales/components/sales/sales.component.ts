@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
 
 @Component({
   selector: 'app-sales',
@@ -6,5 +12,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./sales.component.scss']
 })
 export class SalesComponent {
+ 
 
 }

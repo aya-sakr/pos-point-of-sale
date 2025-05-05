@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../../Service/users.service';
 import { Iusers } from 'src/app/Models/iusers';
+import { _MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -11,15 +12,16 @@ import { Iusers } from 'src/app/Models/iusers';
 
 })
 export class UsersComponent  implements OnInit{
-  allUsers:Iusers[]=[]
+
+  allUsers:any
   constructor( private usersService:UsersService){}
-ngOnInit(): void {
+ ngOnInit(): void {
   this.getUsers()
   
 }
 getUsers(){
-  this.usersService.getAllUsers().subscribe((res:any)=>{
-    this.allUsers =res
+  this.usersService.getAllUsers().subscribe((data:any)=>{
+    this.allUsers = data
 
   })
 }

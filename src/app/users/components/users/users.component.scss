@@ -1,8 +1,6 @@
-.users-content{
- 
-
-    .users-headers{
-        background-color:black;
-    }
-
+.container{
+   .users{
+    display: flex;
+    justify-content: space-between;
+   }
 }
