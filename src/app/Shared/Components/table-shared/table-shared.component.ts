@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges,  ViewChild } from '@angular/core';
+import { Component, Input, OnChanges,  OnInit,  ViewChild } from '@angular/core';
 import { Iusers } from 'src/app/Models/iusers';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
+
+
 
 
 
@@ -20,22 +23,22 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
   
 })
 export class TableSharedComponent implements OnChanges {
-  @ViewChild (MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) Paginator!:MatPaginator
+  constructor(){}
+
+
  
 @Input() userData?:Iusers[]
 displayedColumns: string[] = ['id', 'username', 'Password'];
 dataSource: any
 
 
-// ngAfterViewInit() {
- 
-  
-// }
 
 
 ngOnChanges() {
-  this.dataSource = this.userData
-  this.dataSource.paginator = this.paginator;
+  this.dataSource = new MatTableDataSource<Iusers>(this.userData)
+  this.dataSource.paginator = this.Paginator
+  
   
 
 }

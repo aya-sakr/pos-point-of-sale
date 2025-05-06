@@ -7,11 +7,20 @@ import { TableSharedComponent } from '../Shared/Components/table-shared/table-sh
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddUsersComponent } from './components/add-users/add-users.component';
+import {MatButtonModule} from '@angular/material/button';
+
+
+
+
+
 
 
 @NgModule({
   declarations: [
     UsersComponent,
+    AddUsersComponent,
     
    
 
@@ -23,9 +32,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     TableSharedComponent,
     HttpClientModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatButtonModule
+
+
    
-    
-  ]
+
+  ],
+ 
 })
 export class UsersModule { }

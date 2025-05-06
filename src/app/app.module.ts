@@ -21,7 +21,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +54,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

@@ -2,5 +2,10 @@
    .users{
     display: flex;
     justify-content: space-between;
+    .example-button-row {
+      display: table-cell;
+      max-width: 600px;
+    }
    }
+
 }
