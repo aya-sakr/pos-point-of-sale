@@ -19,4 +19,7 @@ export class UsersService {
      return this.http.get<Iusers[]>(this.apiUrl)
        
    }
+   postnewUser(newUser:Iusers){
+    return this.http.post<Iusers[]>(this.apiUrl,newUser)
+   }
 }

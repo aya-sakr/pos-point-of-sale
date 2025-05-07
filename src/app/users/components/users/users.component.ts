@@ -16,7 +16,7 @@ import { AddUsersComponent } from '../add-users/add-users.component';
 })
 export class UsersComponent  implements OnInit{
 
-  allUsers:any
+  allUsers:Iusers[]=[]
   constructor( private usersService:UsersService ,private dialog:MatDialog){}
  ngOnInit(): void {
   this.getUsers()
@@ -28,8 +28,10 @@ getUsers(){
 
   })
 }
- addnNewUser(){
- this.dialog.open(AddUsersComponent)
+ addNewUser(){
+ this.dialog.open(AddUsersComponent,{
+  disableClose:true
+ })
 
 
   
