@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges,  OnInit,  ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges,  OnInit,  Output,  ViewChild } from '@angular/core';
 import { Iusers } from 'src/app/Models/iusers';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
+import { UsersService } from 'src/app/users/Service/users.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -22,15 +24,23 @@ import { MatPaginator } from '@angular/material/paginator';
 
   
 })
-export class TableSharedComponent implements OnChanges {
+export class TableSharedComponent implements OnChanges,OnInit {
+  dataSource: any
+  users:Iusers[]=[]
   @ViewChild(MatPaginator) Paginator!:MatPaginator
-  constructor(){}
+  @Input() userData?:Iusers[]
+        displayedColumns: string[] = [ 'id','username', 'Password','action'];
 
+  //  @Output() updateUsers = new EventEmitter<Iusers>()      
+       
+  constructor(private userService:UsersService,private activteRouting:ActivatedRoute){
+   
+  }
+ngOnInit(): void {
+  this.getAllUsers()
+}
 
  
-@Input() userData?:Iusers[]
-displayedColumns: string[] = ['id', 'username', 'Password'];
-dataSource: any
 
 
 
@@ -40,6 +50,31 @@ ngOnChanges() {
   this.dataSource.paginator = this.Paginator
   
   
+
+}
+editUser(){
+
+}
+getAllUsers(){
+  this.userService.getAllUsers().subscribe((res)=>{
+    this.users=res
+    console.log(this.users)
+  })
+}
+delettUser(index:number){
+  this.users.splice(index,1)
+  console.log(this.users)
+  let id = this.users[index].id
+ console.log(id)
+
+  this.userService.deletUser(id).subscribe(()=>{
+    alert ('user deleted')
+
+   
+    
+  })
+ 
+ 
 
 }
 

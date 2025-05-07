@@ -22,4 +22,7 @@ export class UsersService {
    postnewUser(newUser:Iusers){
     return this.http.post<Iusers[]>(this.apiUrl,newUser)
    }
+   deletUser(id:any){
+    return this.http.delete( `http://localhost:3000/users/${id}`)
+   }
 }

@@ -8,6 +8,7 @@ import { AddUsersComponent } from '../add-users/add-users.component';
 
 
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -37,5 +38,9 @@ getUsers(){
   
 
 }
+// receivedData(event:any){
+// console.log(event)
+
+// }
 
 }
