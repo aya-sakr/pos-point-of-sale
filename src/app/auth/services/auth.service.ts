@@ -5,14 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiUrl:string="http://localhost:3000/users"
 
 
-  constructor(private http:HttpClient) { 
+
+  constructor() { 
    
   }
-  getAllUsers(){
-    return this.http.get(this.apiUrl)
+
       
-  }
+  
 }

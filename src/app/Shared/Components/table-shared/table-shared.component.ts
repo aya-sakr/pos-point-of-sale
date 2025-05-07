@@ -31,9 +31,9 @@ export class TableSharedComponent implements OnChanges,OnInit {
   @Input() userData?:Iusers[]
         displayedColumns: string[] = [ 'id','username', 'Password','action'];
 
-  //  @Output() updateUsers = new EventEmitter<Iusers>()      
+  @Output() updateUsers = new EventEmitter<Iusers[]>()      
        
-  constructor(private userService:UsersService,private activteRouting:ActivatedRoute){
+  constructor(private userService:UsersService){
    
   }
 ngOnInit(): void {
@@ -61,18 +61,18 @@ getAllUsers(){
     console.log(this.users)
   })
 }
-delettUser(index:number){
-  this.users.splice(index,1)
-  console.log(this.users)
+deletUser(index:any){
   let id = this.users[index].id
- console.log(id)
-
+  this.users.splice(index,1)
   this.userService.deletUser(id).subscribe(()=>{
-    alert ('user deleted')
-
    
-    
+    alert ('user deleted') 
+   
+    this.updateUsers.emit(this.users)
   })
+
+  
+  
  
  
 

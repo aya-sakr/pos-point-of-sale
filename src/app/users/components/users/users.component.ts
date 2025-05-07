@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { UsersService } from '../../Service/users.service';
 import { Iusers } from 'src/app/Models/iusers';
@@ -15,12 +15,16 @@ import { AddUsersComponent } from '../add-users/add-users.component';
   styleUrls: ['./users.component.scss'],
 
 })
-export class UsersComponent  implements OnInit{
+export class UsersComponent  implements OnInit,OnChanges{
 
   allUsers:Iusers[]=[]
   constructor( private usersService:UsersService ,private dialog:MatDialog){}
  ngOnInit(): void {
   this.getUsers()
+  
+}
+ngOnChanges() {
+  this.getUsers
   
 }
 getUsers(){
@@ -38,9 +42,9 @@ getUsers(){
   
 
 }
-// receivedData(event:any){
-// console.log(event)
+handleUsers(updatUser:Iusers[]){
+  this.allUsers= updatUser
 
-// }
+}
 
 }
