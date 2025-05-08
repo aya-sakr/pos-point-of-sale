@@ -3,28 +3,31 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Iusers } from 'src/app/Models/iusers';
 import { UsersService } from '../../Service/users.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SharedService } from 'src/app/auth/services/shared.service';
+import { SharedUserService } from '../../Service/shared-user.service';
 
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
   styleUrls: ['./add-users.component.scss']
 })
-export class AddUsersComponent implements OnInit{
+export class AddUsersComponent implements OnInit {
   allUsers:Iusers[]=[]
   userForm!:FormGroup
   postnewUser:Iusers[]=[]
-  constructor(private fb:FormBuilder,
-              private userService:UsersService,
-              private dialogRef:MatDialogRef<AddUsersComponent>){}
+  constructor(private fb:FormBuilder, private userService:UsersService, private dialogRef:MatDialogRef<AddUsersComponent>,private userSharedService:SharedUserService){
+
+
+  }
       
                 
               
   ngOnInit(): void {
     this.addNewuser()
-     this.getallUsers()
-    
+  
   }
 
+  
   addNewuser(){
     this.userForm= this.fb.group({
     userRole:['',Validators.required],
@@ -35,21 +38,17 @@ export class AddUsersComponent implements OnInit{
     })
      
   }
-  getallUsers(){
-    this.userService.getAllUsers().subscribe((res)=>{
-      this.allUsers=res
-    })
 
-
-    
-  }
   submitUser() {
     let postnewUser = {
       username: this.userForm.value.username,
       password: this.userForm.value.password
     }
+    // this.userSharedService.setNewUser()
+    
+    console.log('from add users', this.userSharedService.setNewUser(postnewUser.username))
+   
     this.userService.postnewUser(postnewUser).subscribe((res:any)=>{ 
-      this.allUsers.push(res)
       this.onClose()
     
     })

@@ -2,7 +2,7 @@
     <div class="users">
         <h4>Users</h4>
         
-        <button   class="btn btn-danger" (click)="addNewUser()"  > Add New User</button>
+        <button   class="btn btn-primary" (click)="addNewUser()"  > Add New User</button>
     </div>
     <app-table-shared [userData]="allUsers" (updateUsers)="handleUsers($event)" ></app-table-shared>
 </div>

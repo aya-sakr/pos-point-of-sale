@@ -62,13 +62,16 @@ getAllUsers(){
   })
 }
 deletUser(index:any){
-  let id = this.users[index].id
   this.users.splice(index,1)
+  let id = this.users[index].id
+  
+ 
+ 
   this.userService.deletUser(id).subscribe(()=>{
    
     alert ('user deleted') 
    
-    this.updateUsers.emit(this.users)
+     this.updateUsers.emit(this.users)
   })
 
   

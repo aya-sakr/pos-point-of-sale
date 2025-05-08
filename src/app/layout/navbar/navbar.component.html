@@ -1,16 +1,18 @@
 <div class="navbar-container">
 <div class="navbar">
     <div class="dateTime">
-        <span>{{dateNow| date: 'shortDate'}} </span>  <br>
-        <span>{{dateNow| date: 'shortTime'}} </span> 
+        <span>{{dateNow| date: 'mediumDate'}} </span>  <br>
+        <span>{{dateNow| date: 'mediumTime'}} </span> 
        
 
 
 
     </div>
     <div class="user-menu" (click)=" toggleDropdown()">
-        <img  class="avatar" src= 'assets/avatar.jpg'  alt="user">
-        <span>Aya Sakr</span>
+        
+     <img  class="avatar" src= 'assets/avatar.jpg'  alt="user">
+        
+        <span>{{userName}}</span>
         <div class="menu-icon">
          <span> &#9776;</span>
        </div>
