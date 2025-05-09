@@ -5,15 +5,15 @@ import { Iusers } from 'src/app/Models/iusers';
   providedIn: 'root'
 })
 export class SharedUserService {
-  private newUserSubject = new BehaviorSubject<any[] >([])
+  private newUserSubject = new BehaviorSubject<Iusers| null>(null)
 
   constructor() { }
 
-  setNewUser(userData:any){
-    const currentUsers:any = this.newUserSubject.getValue()
-     return this.newUserSubject.next([...currentUsers,userData])
+  setNewUser( users:Iusers){
+    return this.newUserSubject.next(users)
+
   }
   getNewUser(){
-     return this.newUserSubject.asObservable()
+    return this.newUserSubject.asObservable()
   }
 }

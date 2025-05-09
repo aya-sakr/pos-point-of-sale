@@ -12,53 +12,55 @@ import { SharedUserService } from '../../Service/shared-user.service';
   styleUrls: ['./add-users.component.scss']
 })
 export class AddUsersComponent implements OnInit {
-  allUsers:Iusers[]=[]
-  userForm!:FormGroup
-  postnewUser:Iusers[]=[]
-  constructor(private fb:FormBuilder, private userService:UsersService, private dialogRef:MatDialogRef<AddUsersComponent>,private userSharedService:SharedUserService){
+  allUsers: Iusers[] = []
+  userForm!: FormGroup
+  postnewUser: Iusers[] = []
+  constructor(private fb: FormBuilder, private userService: UsersService, private dialogRef: MatDialogRef<AddUsersComponent>, private userSharedService: SharedUserService) {
 
 
   }
-      
-                
-              
   ngOnInit(): void {
     this.addNewuser()
-  
+
   }
 
-  
-  addNewuser(){
-    this.userForm= this.fb.group({
-    userRole:['',Validators.required],
-      username: ['',[Validators.required,Validators.pattern('[A-Za-z]{3,}')]],
-      password:['',Validators.required]
 
-     
+  addNewuser() {
+    this.userForm = this.fb.group({
+      userRole: ['', Validators.required],
+      username: ['', [Validators.required, Validators.pattern('[A-Za-z]{3,}')]],
+      password: ['', Validators.required]
+
+
     })
-     
+
   }
 
   submitUser() {
     let postnewUser = {
       username: this.userForm.value.username,
-      password: this.userForm.value.password
+      password: this.userForm.value.password,
+
     }
-    // this.userSharedService.setNewUser()
-    
-    console.log('from add users', this.userSharedService.setNewUser(postnewUser.username))
-   
-    this.userService.postnewUser(postnewUser).subscribe((res:any)=>{ 
+
+
+
+
+
+    this.userService.postnewUser(postnewUser).subscribe((res: any) => {
+      this.userSharedService.setNewUser(res)
+
+
       this.onClose()
-    
+
     })
-  
-    
- 
+
+
+
 
   }
 
-  onClose(){
+  onClose() {
     this.dialogRef.close()
   }
 

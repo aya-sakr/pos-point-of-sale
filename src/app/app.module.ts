@@ -16,6 +16,8 @@ import { SalesModule } from './sales/sales.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -48,7 +50,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReturnModule,
   CommonModule,
   RouterModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+   BrowserAnimationsModule
     
 
   ],

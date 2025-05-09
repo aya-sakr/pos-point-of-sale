@@ -5,7 +5,7 @@ import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { UsersService } from 'src/app/users/Service/users.service';
-import { ActivatedRoute } from '@angular/router';
+
 
 
 
@@ -29,15 +29,15 @@ export class TableSharedComponent implements OnChanges,OnInit {
   users:Iusers[]=[]
   @ViewChild(MatPaginator) Paginator!:MatPaginator
   @Input() userData?:Iusers[]
-        displayedColumns: string[] = [ 'id','username', 'Password','action'];
+        displayedColumns: string[] = ['username', 'Password','action'];
 
-  @Output() updateUsers = new EventEmitter<Iusers[]>()      
+  @Output() deleteUsers = new EventEmitter<Iusers>()      
        
   constructor(private userService:UsersService){
    
   }
 ngOnInit(): void {
-  this.getAllUsers()
+
 }
 
  
@@ -55,24 +55,15 @@ ngOnChanges() {
 editUser(){
 
 }
-getAllUsers(){
-  this.userService.getAllUsers().subscribe((res)=>{
-    this.users=res
-    console.log(this.users)
-  })
-}
-deletUser(index:any){
-  this.users.splice(index,1)
-  let id = this.users[index].id
-  
- 
- 
-  this.userService.deletUser(id).subscribe(()=>{
+
+deletUser(id:any){
+   this.userService.deletUser(id).subscribe((res:any)=>{
+    this.deleteUsers.emit(res)
    
     alert ('user deleted') 
    
-     this.updateUsers.emit(this.users)
-  })
+    
+ })
 
   
   
