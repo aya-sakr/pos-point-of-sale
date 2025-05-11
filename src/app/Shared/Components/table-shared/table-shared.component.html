@@ -24,7 +24,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let element;let i = index">
-          <button class="edit-user btn btn-primary" type="button" (click)="editUser()">Edit</button>
+          <button class="edit-user btn btn-primary" type="button" (click)="editUser(element.id)">Edit</button>
           <button class="delet-user btn btn-danger" type="button"  (click)="deletUser(element.id)">Delete</button> 
       </td>
 
@@ -38,7 +38,7 @@
   </table>
  
 </div>
-<mat-paginator  [length]="100" [pageSize]="10" [pageSizeOptions]="[5,10,15]" aria-label="Select page">
+<mat-paginator  [length]="100" [pageSize]="3" [pageSizeOptions]="[5,10,15]" aria-label="Select page">
 </mat-paginator>
 
 
