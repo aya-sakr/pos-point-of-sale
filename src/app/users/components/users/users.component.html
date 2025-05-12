@@ -4,5 +4,5 @@
         
         <button   class="btn btn-primary" (click)="addNewUser()"  > Add New User</button>
     </div>
-    <app-table-shared [userData]="allUsers" (deleteUsers)="deletUsers($event)" ></app-table-shared>
+    <app-table-shared [userData]="allUsers" (deleteUsers)="deletUsers($event)" (modeOutPut)="editUser($event)" ></app-table-shared>
 </div>

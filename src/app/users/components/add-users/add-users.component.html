@@ -40,7 +40,8 @@
         <input type="password" class="form-control" formControlName="password" name="password">
       </div>
     
-      <button  type="submit" [disabled]="userForm.invalid" class="btn btn-primary col-12">Submit</button> 
+      <button  type="submit" [disabled]="userForm.invalid" class="btn btn-primary col-12"> {{ mode == true ? 'Submit' : 'Edit' }}</button> 
+
       
 
     </form>

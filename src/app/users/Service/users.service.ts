@@ -19,10 +19,17 @@ export class UsersService {
      return this.http.get<Iusers[]>(this.apiUrl)
        
    }
+   getUserById(id:string){
+    return this.http.get(`${this.apiUrl}/${id}`)
+   }
    postnewUser(newUser:Iusers){
     return this.http.post<Iusers[]>(this.apiUrl,newUser)
    }
    deletUser(id:any){
-    return this.http.delete( `http://localhost:3000/users/${id}`)
+    return this.http.delete( `${this.apiUrl}/${id}`)
+   }
+   updateUsers(id:string,model:Iusers){
+    return this.http.put(`${this.apiUrl}/${id}`,model);
+    
    }
 }
