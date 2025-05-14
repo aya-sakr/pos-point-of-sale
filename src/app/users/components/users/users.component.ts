@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../Service/users.service';
 import { Iusers } from 'src/app/Models/iusers';
 import { _MatTableDataSource } from '@angular/material/table';
@@ -16,7 +16,9 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private dialog: MatDialog,
-    public userSharedService: SharedUserService
+    public userSharedService: SharedUserService,
+    private toaster:ToastrService
+    
   ) {}
   ngOnInit() {
     this.getUsers();

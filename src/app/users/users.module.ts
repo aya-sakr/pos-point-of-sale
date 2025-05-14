@@ -11,6 +11,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { timeout } from 'rxjs';
+
 
 
 
@@ -39,7 +42,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
-  
+    ToastrModule.forRoot(
+      {timeOut:3000}
+    )
+
 
  
 

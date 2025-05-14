@@ -1,7 +1,4 @@
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-=======
 import {
   Component,
   EventEmitter,
@@ -11,18 +8,18 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
->>>>>>> b7a18cef4341f9ae719e32cddc896a79776cfc13
 import { Iusers } from 'src/app/Models/iusers';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { UsersService } from 'src/app/users/Service/users.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-table-shared',
   standalone: true,
   templateUrl: './table-shared.component.html',
   styleUrls: ['./table-shared.component.scss'],
-  imports: [CommonModule, MatTableModule, MatPaginatorModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule,ToastrModule],
 })
 export class TableSharedComponent implements OnChanges, OnInit {
   @Output() deleteUsers = new EventEmitter<Iusers>();
@@ -35,7 +32,7 @@ export class TableSharedComponent implements OnChanges, OnInit {
   displayedColumns: string[] = ['username', 'Password', 'action'];
 
 
-  constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService,private toaster:ToastrService) {}
 
 
   ngOnInit(): void {}
@@ -51,8 +48,7 @@ export class TableSharedComponent implements OnChanges, OnInit {
   deletUser(id: any) {
     this.userService.deletUser(id).subscribe((res: any) => {
       this.deleteUsers.emit(res);
-
-      alert('user deleted');
+     this.toaster.success('User Deleted','Success')
     });
   }
 }

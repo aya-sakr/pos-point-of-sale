@@ -1,22 +1,20 @@
 import {
   Component,
   Inject,
-  OnChanges,
-  OnDestroy,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
+
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Iusers } from 'src/app/Models/iusers';
 import { UsersService } from '../../Service/users.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SharedService } from 'src/app/auth/services/shared.service';
 import { SharedUserService } from '../../Service/shared-user.service';
+import { ToastrService } from 'ngx-toastr';
 export interface AddUserDialogData {
   id?: string; // optional if you also use this dialog for “new” users
 }
@@ -37,7 +35,8 @@ export class AddUsersComponent implements OnInit {
     private userService: UsersService,
     private dialogRef: MatDialogRef<AddUsersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddUserDialogData,
-    private userSharedService: SharedUserService
+    private userSharedService: SharedUserService,
+    private toaster:ToastrService
   ) {
     this.userId = data.id;
   }
@@ -60,7 +59,7 @@ export class AddUsersComponent implements OnInit {
   }
 
   addNewuser() {
-    // this.addMode = true;
+    this.addMode = true;
     console.log('add user');
   }
   edituser(userId: string) {
@@ -81,14 +80,16 @@ export class AddUsersComponent implements OnInit {
         .postnewUser(this.userForm.value)
         .subscribe((res: any) => {
           this.userSharedService.setNewUser(res);
+          this.toaster.success('User added successfully')
         });
     } else {
-      console.log(this.userForm);
+    
       this.userService
         .updateUsers(this.userId, this.userForm.value)
         .subscribe((res) => {
-          console.log(res);
           this.dialogRef.close({ action: 'edit', user: res });
+          this.toaster.success("The User Updated",'Success')
+          
         });
     }
     this.onClose();

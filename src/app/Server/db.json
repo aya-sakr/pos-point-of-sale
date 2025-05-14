@@ -1,33 +1,27 @@
 {
   "users": [
     {
-      "id": "3faa",
-      "username": "khloud",
-      "password": "admin"
-    },
-    {
-      "userRole": "purchase",
-      "username": "mohammed",
-      "password": "admin",
-      "id": "5a4f"
-    },
-    {
       "userRole": "returns",
-      "username": "sakr",
+      "username": "soha",
       "password": "admin",
       "id": "8f41"
     },
     {
-      "id": "6636",
-      "userRole": "purchase",
-      "username": "loly",
-      "password": "admin"
+      "userRole": "Products",
+      "username": "soja",
+      "password": "hyhy",
+      "id": "fc7a"
     },
     {
+      "id": "1751",
+      "username": "ayaat",
+      "password": "gtgt"
+    },
+    {
+      "id": "bc01",
       "userRole": "sales",
-      "username": "zezoremm",
-      "password": "admin",
-      "id": "c4a9"
+      "username": "tota",
+      "password": "gtgt"
     }
   ]
 }

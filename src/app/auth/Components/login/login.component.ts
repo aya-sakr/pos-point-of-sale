@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/users/Service/users.service';
 import { SharedService } from '../../services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -14,7 +15,11 @@ import { SharedService } from '../../services/shared.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
   allUsers: any[] = []
-  constructor(private fb: FormBuilder, private router: Router, private userService: UsersService,private sharedService:SharedService) {
+  constructor(private fb: FormBuilder
+    , private router: Router,
+     private userService: UsersService
+     ,private sharedService:SharedService,
+     private toaster:ToastrService)  {
 
   }
   ngOnInit(): void {
@@ -47,7 +52,9 @@ export class LoginComponent implements OnInit {
 
     this.sharedService.setUserName(userLogin.username)
 
-    this.userService.postnewUser(userLogin).subscribe(() => {
+    this.userService.postnewUser(this.loginForm.value).subscribe(() => {
+      this.toaster.success('Login Successful','Success')
+
 
 
     })
