@@ -1,9 +1,33 @@
 {
   "users": [
     {
-      "id": "b75a",
-      "username": "hghgh",
-      "password": "jj"
+      "id": "3faa",
+      "username": "khloud",
+      "password": "admin"
+    },
+    {
+      "userRole": "purchase",
+      "username": "mohammed",
+      "password": "admin",
+      "id": "5a4f"
+    },
+    {
+      "userRole": "returns",
+      "username": "sakr",
+      "password": "admin",
+      "id": "8f41"
+    },
+    {
+      "id": "6636",
+      "userRole": "purchase",
+      "username": "loly",
+      "password": "admin"
+    },
+    {
+      "userRole": "sales",
+      "username": "zezoremm",
+      "password": "admin",
+      "id": "c4a9"
     }
   ]
 }

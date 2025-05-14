@@ -1,70 +1,100 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  Inject,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Iusers } from 'src/app/Models/iusers';
 import { UsersService } from '../../Service/users.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SharedService } from 'src/app/auth/services/shared.service';
 import { SharedUserService } from '../../Service/shared-user.service';
+export interface AddUserDialogData {
+  id?: string; // optional if you also use this dialog for “new” users
+}
 
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
-  styleUrls: ['./add-users.component.scss']
+  styleUrls: ['./add-users.component.scss'],
 })
 export class AddUsersComponent implements OnInit {
-  mode: boolean =true 
-  allUsers: Iusers[] = []
-  userForm!: FormGroup
-  postnewUser: Iusers[] = []
-  constructor(private fb: FormBuilder, private userService: UsersService, private dialogRef: MatDialogRef<AddUsersComponent>, private userSharedService: SharedUserService) {
+  allUsers: Iusers[] = [];
+  userForm!: FormGroup;
+  postnewUser: Iusers[] = [];
+  userId?: any;
+  addMode: boolean = true;
+  constructor(
+    private fb: FormBuilder,
+    private userService: UsersService,
+    private dialogRef: MatDialogRef<AddUsersComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: AddUserDialogData,
+    private userSharedService: SharedUserService
+  ) {
+    this.userId = data.id;
   }
   ngOnInit(): void {
-    this. initiatUserForm()
-    this.editUser()
-    this.userSharedService.getMode().subscribe((res:any)=>{
-      this.mode = res
-    
-      
-    })
-    
-   
- 
+    this.intiateAddUserForm();
 
+    if (this.userId == '') {
+      this.addNewuser();
+    } else {
+      this.edituser(this.userId);
+    }
   }
-  initiatUserForm() {
+
+  intiateAddUserForm() {
     this.userForm = this.fb.group({
       userRole: ['', Validators.required],
       username: ['', [Validators.required, Validators.pattern('[A-Za-z]{3,}')]],
-      password: ['', Validators.required]  })
+      password: ['', Validators.required],
+    });
+  }
 
+  addNewuser() {
+    // this.addMode = true;
+    console.log('add user');
+  }
+  edituser(userId: string) {
+    this.addMode = false;
+    this.setFormValue(userId);
+  }
+
+  setFormValue(id: string) {
+    this.userService.getUserById(id).subscribe((res) => {
+      this.userForm.controls['userRole'].setValue(res.userRole);
+      this.userForm.controls['username'].setValue(res.username);
+      this.userForm.controls['password'].setValue(res.password);
+    });
   }
   submitUser() {
-    let postnewUser = {
-      username: this.userForm.value.username,
-      password: this.userForm.value.password,
-
+    if (this.addMode) {
+      this.userService
+        .postnewUser(this.userForm.value)
+        .subscribe((res: any) => {
+          this.userSharedService.setNewUser(res);
+        });
+    } else {
+      console.log(this.userForm);
+      this.userService
+        .updateUsers(this.userId, this.userForm.value)
+        .subscribe((res) => {
+          console.log(res);
+          this.dialogRef.close({ action: 'edit', user: res });
+        });
     }
-    this.userService.postnewUser(postnewUser).subscribe((res: any) => {
-      this.userSharedService.setNewUser(res)
-      this.onClose()
-
-    })
-
+    this.onClose();
   }
 
   onClose() {
-    this.dialogRef.close()
+    this.dialogRef.close();
   }
-
-  editUser(){
-  //   this.userSharedService.getNewUser().subscribe((res:any)=>{
-     
-  //     this.userForm.setValue({
-  //       userRole:'role',
-  //       username:res.username,
-  //       password:res.password
-  //     })
-    
-  //  })
-  }
-
 }
