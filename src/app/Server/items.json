@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "9566",
+      "barcode": "123456",
+      "name": "mask",
+      "purchase": "40",
+      "wholesale": "50",
+      "retail": "60",
+      "quantity": "4"
+    },
+    {
+      "id": "fe42",
+      "barcode": "147258",
+      "name": "toothpast",
+      "purchase": "10",
+      "wholesale": "15",
+      "retail": "20",
+      "quantity": "4"
+    }
+  ]
+}

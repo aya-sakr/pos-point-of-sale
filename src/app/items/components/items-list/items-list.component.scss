@@ -1,0 +1,22 @@
+.container {
+  .search-input {
+    margin-bottom: 1rem;
+    display: flex;
+ 
+   
+  }
+  .filter-items{
+    margin-left: 1rem;
+  }
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+    .mat-mdc-header-cell,
+    .mat-mdc-cell {
+      text-align: center;
+    }
+    .item-delete {
+      margin-left: 1rem;
+    }
+  }
+}

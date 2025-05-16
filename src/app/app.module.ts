@@ -24,12 +24,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     NavbarComponent,
     LayoutComponent,
+   
    
    
 

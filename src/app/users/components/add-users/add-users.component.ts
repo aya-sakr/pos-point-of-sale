@@ -60,7 +60,6 @@ export class AddUsersComponent implements OnInit {
 
   addNewuser() {
     this.addMode = true;
-    console.log('add user');
   }
   edituser(userId: string) {
     this.addMode = false;

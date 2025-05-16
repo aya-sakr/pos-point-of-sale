@@ -1,14 +1,25 @@
-table {
-  width: 100%;
-  margin-top: 1rem;
-  .delet-user{
-    margin-left: 1rem;
-
-
+.mat-elevation-z8 {
+  box-shadow: none;
+   .mat-mdc-header-cell, .mat-mdc-cell {
+      text-align: center;
   }
- 
- 
+
+ .table-content {
+    width: 100%;
+    margin-top: 1rem;
+    .delet-user{
+      margin-left: 1rem;
+  
+  
+    }
+   
+   
+  }
+
 }
+
+
+
 
   
 

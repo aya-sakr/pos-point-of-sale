@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
     private usersService: UsersService,
     private dialog: MatDialog,
     public userSharedService: SharedUserService,
-    private toaster:ToastrService
+
     
   ) {}
   ngOnInit() {

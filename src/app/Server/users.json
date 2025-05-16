@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "userRole": "users",
+      "username": "juju",
+      "password": "gtgt",
+      "id": "1751"
+    },
+    {
+      "userRole": "sales",
+      "username": "sakr",
+      "password": "gtgt",
+      "id": "bc01"
+    },
+    {
+      "id": "8aeb",
+      "userRole": "sales",
+      "username": "aya",
+      "password": "hhhh"
+    },
+    {
+      "id": "7ba2",
+      "username": "aya",
+      "password": "gggg"
+    },
+    {
+      "id": "4ea3",
+      "username": "khloud",
+      "password": "gtgt"
+    }
+  ]
+}

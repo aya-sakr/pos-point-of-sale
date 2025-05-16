@@ -2,16 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ItemsRoutingModule } from './items-routing.module';
-import { ItemsComponent } from './components/items/items.component';
+import { ItemsListComponent } from './components/items-list/items-list.component';
+import { AddEditItemsComponent } from './components/add-edit-items/add-edit-items.component';
+import { SubHeaderComponent } from "../Shared/Components/sub-header/sub-header.component";
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    ItemsComponent
+ 
+    ItemsListComponent,
+    AddEditItemsComponent
   ],
   imports: [
     CommonModule,
-    ItemsRoutingModule
-  ]
+    ItemsRoutingModule,
+    SubHeaderComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
+]
 })
 export class ItemsModule { }

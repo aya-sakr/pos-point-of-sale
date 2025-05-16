@@ -5,7 +5,7 @@ import { Iusers } from 'src/app/Models/iusers';
   providedIn: 'root'
 })
 export class SharedUserService {
-  private newUserSubject = new BehaviorSubject<Iusers|boolean| null >(null)
+  private newUserSubject = new BehaviorSubject<Iusers| null >(null)
 
   constructor() { }
 
@@ -16,17 +16,5 @@ export class SharedUserService {
   getNewUser(){
     return this.newUserSubject.asObservable()
   }
-  setMode(mode:boolean){
-    return this.newUserSubject.next(mode)
-  }
-  getMode(){
-    return this.newUserSubject.asObservable()
-  }
-  setEditUser(editUser:Iusers){
-    this.newUserSubject.next(editUser)
-
-  }
-  getEditUser(){
-    this.newUserSubject.asObservable()
-  }
+ 
 }

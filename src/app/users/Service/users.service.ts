@@ -14,7 +14,7 @@ export class UsersService {
   getAllUsers(): Observable<Iusers[]> {
     return this.http.get<Iusers[]>(this.apiUrl);
   }
-  postnewUser(newUser: Iusers) {
+  postnewUser(newUser: Iusers):Observable<Iusers[]> {
     return this.http.post<Iusers[]>(this.apiUrl, newUser);
   }
   deletUser(id: any) {
