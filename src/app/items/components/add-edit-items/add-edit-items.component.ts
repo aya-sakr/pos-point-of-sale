@@ -24,14 +24,16 @@ export class AddEditItemsComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.initaiatItemsForm();
-    this.sharedItemService.getEditId().subscribe((res: any) => {
-      this.editItemId = res;
-      if (res) {
+    this.editItemId = history.state.id
+    
+    if (this.editItemId) {
+        
         this.editItem();
       } else {
-        this.addItem;
+       this.addItemMode=true
       }
-    });
+      
+  
   }
   initaiatItemsForm() {
     this.itemsForm = this.fb.group({
@@ -43,9 +45,8 @@ export class AddEditItemsComponent implements OnInit {
       quantity: ['', Validators.required],
     });
   }
-  addItem() {
-    this.addItemMode = true;
-  }
+ 
+ 
   editItem() {
     this.addItemMode = false;
     this.editItemForm(this.editItemId);

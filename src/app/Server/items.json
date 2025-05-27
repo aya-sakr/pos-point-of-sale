@@ -1,22 +1,40 @@
 {
   "items": [
     {
-      "id": "9566",
-      "barcode": "123456",
-      "name": "mask",
+      "id": "9ada",
+      "barcode": "1471",
+      "name": "lolo",
+      "purchase": "20",
+      "wholesale": "30",
+      "retail": "40",
+      "quantity": "10"
+    },
+    {
+      "id": "ddc9",
+      "barcode": "147852",
+      "name": "white",
       "purchase": "40",
       "wholesale": "50",
       "retail": "60",
-      "quantity": "4"
+      "quantity": "10"
     },
     {
-      "id": "fe42",
-      "barcode": "147258",
-      "name": "toothpast",
+      "id": "e34d",
+      "barcode": "1478521",
+      "name": "mo3ater",
+      "purchase": "30",
+      "wholesale": "40",
+      "retail": "50",
+      "quantity": "5"
+    },
+    {
+      "id": "10a6",
+      "barcode": "147852369",
+      "name": "toka",
       "purchase": "10",
-      "wholesale": "15",
-      "retail": "20",
-      "quantity": "4"
+      "wholesale": "20",
+      "retail": "30",
+      "quantity": "3"
     }
   ]
 }

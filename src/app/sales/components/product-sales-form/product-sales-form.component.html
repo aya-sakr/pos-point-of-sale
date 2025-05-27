@@ -1,54 +1,82 @@
 <div class="row container">
   <div class="col-md-6">
-   <form >
-     <div class="row price-type">
-        <div class="col-md-4">Sales Price Name</div>
+    <form [formGroup]="productSalesForm" (ngSubmit)="submitData()">
+      <div class="row price-type">
         <div class="col-md-4">
-          <input type="radio" />
-          <label for="">Wholesales</label>
+          Sales Price Type
         </div>
         <div class="col-md-4">
-          <input type="radio" />
-          <label >Retail</label>
-        </div>
-     </div>
-     <div class="row">
-        <div class="col-12">
-            <label for="">Barcode</label>
-            <input type="text" class="form-control">
-        </div>
-        <div class="col-12">
-            <label for="">Barcode</label>
-            <input type="text" class="form-control">
-        </div>
-     </div>
-     <div class="row">
-        <div class="col-md-4">
-            <label for="">Quntity</label>
-            <input type="text" class="form-control">
+
+          <div>
+            <input type='radio' value="retail" formControlName="priceType">
+            <label class="radio-label ">Retail</label>
+          </div>
+
         </div>
         <div class="col-md-4">
-            <label for="">Price</label>
-            <input type="text" class="form-control">
+          <div class="">
+            <input type='radio' value="wholesales" formControlName="priceType">
+            <label class="radio-label">Wholesales</label>
+          </div>
+
         </div>
-        <div class="col-md-4">
-            <label for="">Total Price</label>
-            <input type="text" class="form-control">
-        </div>
-     </div>
-     <div class="add-product">
-        <button type="submit" class="btn btn-primary">Add</button>
-     </div>
-   </form>
-  </div>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <label for="">Serch</label>
-        <input type="search" class="form-control">
       </div>
-        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="p-field">
+            <label for="barcode" class="custom-label">Barcode</label>
+            <input id="barcode" type="text" pInputText formControlName="barcode" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="p-field">
+            <label for="productName" class="custom-label">Product Name</label>
+            <input id="productName" type="text" pInputText formControlName="productName" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="p-field">
+            <label for="quantity" class="custom-label">Quantity</label>
+            <input id="quantity" type="text" pInputText formControlName="quantity" #quantityInput />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-field">
+            <label for="price" class="custom-label">Price</label>
+            <input id="price" type="text" pInputText formControlName="price" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-field">
+            <label for="totalPrice" class="custom-label">Total Price</label>
+            <input id="totalPrice" type="text" pInputText formControlName="totalPrice" />
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit" class="btn btn-primary custom-button">Add</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="col-md-6 ">
+    <div class="search-box">
+      <fieldset>
+        <legend>Search</legend>    
+        <div class="text-center">
+          <p-dropdown 
+              [options]="productName" 
+              [(ngModel)]="selectedCity"
+              optionLabel="name" 
+              placeholder="Select a City" />
+      </div>
+      
+      </fieldset>
     </div>
   </div>
 </div>

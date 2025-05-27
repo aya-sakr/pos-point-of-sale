@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Items } from 'src/app/Models/items';
@@ -35,4 +35,9 @@ export class ItemsService {
     return this.http.delete<Items>(`http://localhost:3000/items/${id}`);
     
   }
+  getProductByBarcode(barcode: string):any {
+    const params = new HttpParams().set('barcode',barcode)
+    return this.http.get(this.apiUrl,{params});
+  }
 }
+

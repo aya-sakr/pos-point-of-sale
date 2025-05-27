@@ -5,10 +5,12 @@ import { ItemsRoutingModule } from './items-routing.module';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { AddEditItemsComponent } from './components/add-edit-items/add-edit-items.component';
 import { SubHeaderComponent } from "../Shared/Components/sub-header/sub-header.component";
-import { MatTableModule } from '@angular/material/table';
+import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule,
+   
 ]
 })
 export class ItemsModule { }

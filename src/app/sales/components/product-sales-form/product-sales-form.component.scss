@@ -1,0 +1,55 @@
+.container{
+    margin-top: 1rem;
+    .price-type{
+        padding-bottom: 1rem;
+        .radio-label{
+            padding-left: .5rem;
+
+        }
+
+    }
+    .p-field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        .custom-label{
+            padding-bottom: .5rem
+          
+        }  
+      }
+   
+    .submit-button{
+       text-align: center;
+       .custom-button{
+        padding: .5rem;
+        margin-top: 1rem;
+        width: 100px;
+       }
+       
+    } 
+  
+  .search-box{
+    margin-left: 4rem;
+  }  
+   
+.search-box fieldset {
+  
+    width: 250px;
+    padding-bottom:3rem;
+    padding-top: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-box legend {
+    text-align: center;
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+  }
+}

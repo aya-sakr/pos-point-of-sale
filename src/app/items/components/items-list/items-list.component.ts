@@ -1,16 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { ItemsService } from '../../services/items.service';
 import { Router } from '@angular/router';
-import { SharedItemsService } from '../../services/shared-items.service';
-import { Items } from 'src/app/Models/items';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,10 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./items-list.component.scss'],
 })
 export class ItemsListComponent implements OnInit {
+  isLoading: boolean = false;
   SearchMode: boolean = false;
   searchText: string = '';
   dataSource: any;
-  allItems: Items[] = [];
+  allItems: any;
   filteredArray: any;
   displayedColumns: string[] = [
     'barcode',
@@ -38,21 +30,16 @@ export class ItemsListComponent implements OnInit {
   constructor(
     private itemService: ItemsService,
     private router: Router,
-    private itemSharedService: SharedItemsService,
     protected toaster: ToastrService
   ) {}
   ngOnInit() {
     this.getItems();
-    this.itemSharedService.getNewItem().subscribe((res: any) => {
-      this.allItems.push(res);
-      this.getItems();
-    });
   }
   filterItems() {
     if (!this.searchText) {
       this.getItems();
     } else {
-      this.filteredArray = this.allItems.filter((item) => {
+      this.filteredArray = this.allItems.filter((item: any) => {
         return item.name.toLowerCase().includes(this.searchText.toLowerCase());
       });
     }
@@ -65,17 +52,30 @@ export class ItemsListComponent implements OnInit {
       this.SearchMode = false;
     }
   }
-  getItems() {
-    this.itemService.getAllItems().subscribe((res) => {
-      this.allItems = res;
-      this.filteredArray = this.allItems;
-      this.filteredArray.paginator = this.paginator;
-      this.searchItems();
+  onSearch() {
+    this.filteredArray = this.allItems.filter((item: any) => {
+      return item.name.toLowerCase().includes(this.searchText.toLowerCase());
     });
+    
   }
-  editItem(id: string) {
-    this.itemSharedService.setEditId(id);
-    this.router.navigate(['/items/additems']);
+  
+  clearSearchText() {
+    this.searchText = ''
+    this.getItems()
+  }
+  getItems() {
+      this.itemService.getAllItems().subscribe((res) => {
+        this.isLoading = false;
+        this.allItems = res;
+        this.filteredArray = this.allItems;
+        this.filteredArray.paginator = this.paginator;
+
+        this.searchItems();
+      });
+
+  }
+  editItem(editId: string) {
+    this.router.navigate(['/items/additems'], { state: { id: editId } });
   }
 
   deletItem(id: string, index: number) {
@@ -87,6 +87,6 @@ export class ItemsListComponent implements OnInit {
   }
 
   addNewItems() {
-    this.router.navigate(['/items/additems']);
+    this.router.navigate(['/items/additems'], { state: { id: '' } });
   }
 }

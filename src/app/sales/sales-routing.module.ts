@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReturnComponent } from '../return/components/return/return.component';
 import { SalesComponent } from './components/sales/sales.component';
+import { ProductSalesFormComponent } from './components/product-sales-form/product-sales-form.component';
 
 const routes: Routes = [
-  {path:'',component:SalesComponent}
+  { path: '', component: SalesComponent },
+  {path:'salesForm',component:ProductSalesFormComponent},
+  {path:'salesList',component:ProductSalesFormComponent},
+  {path:'salesSummary',component:ProductSalesFormComponent},
 ];
 
 @NgModule({
