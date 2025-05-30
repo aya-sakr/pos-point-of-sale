@@ -1,4 +1,4 @@
-import { importProvidersFrom, NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import {MatTableModule} from '@angular/material/table';
@@ -11,7 +11,11 @@ import { ProductSalesListComponent } from './components/product-sales-list/produ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 import { DropdownModule } from 'primeng/dropdown';
+
+
 
 
 
@@ -34,7 +38,12 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     ButtonModule,
     TableModule,
-    DropdownModule
+    AutoCompleteModule,
+    HttpClientModule,
+    DropdownModule,
+
+  
+   
   ]
 })
 export class SalesModule { }

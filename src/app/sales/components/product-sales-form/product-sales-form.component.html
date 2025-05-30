@@ -59,22 +59,27 @@
       </div>
 
       <div class="submit-button">
-        <button type="submit" class="btn btn-primary custom-button">Add</button>
+        <button type="submit" class="btn btn-primary custom-button" [disabled]="productSalesForm.invalid">{{mode? 'Add' : 'Edit'}}</button>
       </div>
 
     </form>
   </div>
   <div class="col-md-6 ">
     <div class="search-box">
-      <fieldset>
-        <legend>Search</legend>    
-        <div class="text-center">
-          <p-dropdown 
-              [options]="productName" 
-              [(ngModel)]="selectedCity"
-              optionLabel="name" 
-              placeholder="Select a City" />
-      </div>
+      <fieldset class="section-box">
+        <legend class="section-title">Search</legend>    
+        <div class="section-content">
+          <p-autoComplete
+           [(ngModel)]="selectedProduct"
+           [suggestions]="productList"
+           (completeMethod)="search()"
+           (onSelect)="onProductSelect($event)"
+           [dropdown]="true"
+           dropdownMode="current"
+           field="name"
+           placeholder="Search Product">
+          </p-autoComplete>
+        </div>
       
       </fieldset>
     </div>

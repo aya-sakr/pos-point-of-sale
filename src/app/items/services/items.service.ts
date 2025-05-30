@@ -39,5 +39,12 @@ export class ItemsService {
     const params = new HttpParams().set('barcode',barcode)
     return this.http.get(this.apiUrl,{params});
   }
+ 
+  getProductByName(query: string) {
+    const params = new HttpParams().set('name',query)
+    return this.http.get(this.apiUrl,{params});
+    
+  }
 }
+
 

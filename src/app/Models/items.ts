@@ -1,5 +1,5 @@
 export interface Items {
-    barcode: string,
+    barcode?: string,
     name: string,
     purchase: number,
     wholesale: number,

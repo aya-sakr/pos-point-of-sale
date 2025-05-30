@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -21,7 +22,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
   styleUrls: ['./table-shared.component.scss'],
   imports: [CommonModule, MatTableModule, MatPaginatorModule,ToastrModule],
 })
-export class TableSharedComponent implements OnChanges, OnInit {
+export class TableSharedComponent implements OnChanges, OnInit,AfterViewInit {
   @Output() deleteUsers = new EventEmitter<Iusers>();
   @Output() openDialog = new EventEmitter();
   @ViewChild(MatPaginator) Paginator!: MatPaginator;
@@ -35,11 +36,26 @@ export class TableSharedComponent implements OnChanges, OnInit {
   constructor(private userService: UsersService,private toaster:ToastrService) {}
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+ 
 
   ngOnChanges() {
-    this.dataSource = new MatTableDataSource<Iusers>(this.userData);
-    this.dataSource.paginator = this.Paginator;
+    if (this.userData) {
+      this.dataSource= new MatTableDataSource<Iusers>(this.userData)
+    }
+    if (this.Paginator) {
+      this.dataSource.paginator =this.openDialog
+    }
+    
+  }
+  ngAfterViewInit() {
+
+      this.dataSource = new MatTableDataSource<Iusers>(this.userData);
+      this.dataSource.paginator = this.Paginator;
+      
+    
+    
+    
   }
   editUser(userEditId:number) {
     this.openDialog.emit(userEditId)

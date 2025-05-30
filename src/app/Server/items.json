@@ -35,6 +35,42 @@
       "wholesale": "20",
       "retail": "30",
       "quantity": "3"
+    },
+    {
+      "id": "96f6",
+      "barcode": "123333",
+      "name": "معجون اسنان",
+      "purchase": "10",
+      "wholesale": "20",
+      "retail": "30",
+      "quantity": "10"
+    },
+    {
+      "id": "c459",
+      "barcode": "25852222",
+      "name": "فرشاه اسنان",
+      "purchase": "5",
+      "wholesale": "10",
+      "retail": "20",
+      "quantity": "4"
+    },
+    {
+      "id": "8f76",
+      "barcode": "7892588",
+      "name": "lipglass",
+      "purchase": "10",
+      "wholesale": "20",
+      "retail": "30",
+      "quantity": "9"
+    },
+    {
+      "id": "e906",
+      "barcode": "",
+      "name": "cream",
+      "purchase": "10",
+      "wholesale": "20",
+      "retail": "30",
+      "quantity": "5"
     }
   ]
 }
