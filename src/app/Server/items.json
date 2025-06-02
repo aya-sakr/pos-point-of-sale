@@ -1,15 +1,6 @@
 {
   "items": [
     {
-      "id": "9ada",
-      "barcode": "1471",
-      "name": "lolo",
-      "purchase": "20",
-      "wholesale": "30",
-      "retail": "40",
-      "quantity": "10"
-    },
-    {
       "id": "ddc9",
       "barcode": "147852",
       "name": "white",
@@ -64,7 +55,7 @@
       "quantity": "9"
     },
     {
-      "id": "e906",
+      "id": "b861",
       "barcode": "",
       "name": "cream",
       "purchase": "10",

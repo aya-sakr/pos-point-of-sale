@@ -1,16 +1,26 @@
-.card{
+.container{
+  margin-top: 2rem;
+  .search-product{
+    text-align: left;
+    // width: 500px;
+    margin-bottom: 1rem;
     margin-top: 2rem;
-    th,td{
-        text-align: center;
 
+  }
+  .card{
+    th,
+    td {
+      text-align: center;
     }
-    .edit-product{
-        margin-right: .5rem;
-    }
-    .quantity-control {
+    .p-inputgroup {
+      .center-input {
         text-align: center;
+      }
     }
+
+  }
+ 
+  
+
+  
 }
-
-
-

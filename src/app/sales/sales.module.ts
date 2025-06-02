@@ -14,8 +14,7 @@ import { TableModule } from 'primeng/table';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownModule } from 'primeng/dropdown';
-
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -41,6 +40,8 @@ import { DropdownModule } from 'primeng/dropdown';
     AutoCompleteModule,
     HttpClientModule,
     DropdownModule,
+    ToastrModule
+
 
   
    

@@ -51,12 +51,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ItemsModule,
     ReportsModule,
     ReturnModule,
-  CommonModule,
-  RouterModule,
-  MatPaginatorModule,
-   BrowserAnimationsModule,
-  
+    CommonModule,
+    RouterModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
     
+      
 
   ],
 

@@ -24,8 +24,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="p-field">
-            <label for="barcode" class="custom-label">Barcode</label>
-            <input id="barcode" type="text" pInputText formControlName="barcode" />
+            <label  class="custom-label">Barcode</label>
+            <input  (ngModelChange)="barcodeChange($event)" type="text" pInputText formControlName="barcode" />
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="submit-button">
-        <button type="submit" class="btn btn-primary custom-button" [disabled]="productSalesForm.invalid">{{mode? 'Add' : 'Edit'}}</button>
+        <button type="submit" class="btn btn-primary custom-button" [disabled]="productSalesForm.invalid">Add</button>
       </div>
 
     </form>

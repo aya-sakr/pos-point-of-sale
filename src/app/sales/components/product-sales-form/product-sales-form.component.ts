@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { identity } from 'rxjs';
+
 
 import { ItemsService } from 'src/app/items/services/items.service';
 
@@ -21,7 +21,7 @@ import { ItemsService } from 'src/app/items/services/items.service';
 export class ProductSalesFormComponent implements OnInit,OnChanges {
   @ViewChild('quantityInput') quantityInput!: ElementRef;
   productSalesForm!: FormGroup;
-  barcode: string = '';
+  barcode:any
   cities: any;
   checkTotalPrice: any;
   selectedCity: any = '';
@@ -41,12 +41,7 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
    
   }
    ngOnChanges() {
-    if (this.productEditBarcode) {
-      this.mode =false
-      this.editProduct()
-    } else {
-      this.mode =true
-    }
+    
     
   }
 
@@ -59,20 +54,20 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
   }
   initiatSalesForm() {
     this.productSalesForm = this.fb.group({
-      priceType: ['retail', Validators.required],
-      barcode: ['', Validators.required],
+      barcode: ['', [Validators.required,Validators.pattern('[0-9]{6,}')]],
       productName: ['', Validators.required],
+      priceType: ['retail', Validators.required],
       quantity: ['', Validators.required],
       price: ['', Validators.required],
-      totalPrice: ['', Validators.required],
+      totalPrice: ['', Validators.required]
     });
 
-    this.productSalesForm
-      .get('barcode')
-      ?.valueChanges.subscribe((value: any) => {
-        if (value) {
+  
+  
+      this.productSalesForm.get('barcode')?.valueChanges.subscribe((value: any) => {
+        if ( (this.productSalesForm.get('barcode')?.valid)) {
           // console.log(value)
-          this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
+            this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
             if (res) {
               // console.log(res[0].name)
 
@@ -88,22 +83,36 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
                   this.productSalesForm.controls['totalPrice'].setValue(
                     this.checkTotalPrice
                   );
-                  // this.quantityInput.nativeElement.focus()
+                 
                 });
-            }
+       
+           
+            } 
           });
-        }
+        } 
+          
+        
+        
       });
+    
+     
+   
+  }
+  onProductChange(event: any) {
+    console.log(event);
+    
+    
   }
   search() {
     if (!this.selectedProduct) {
       this.productList = this.allProducts;
+      console.log(this.productList);
+      
     } else {
-      console.log(this.selectedProduct);
+
+
       this.productList = this.allProducts.filter((product: any) => {
-        return product.name
-          .toLowerCase()
-          .includes(this.selectedProduct.toLowerCase());
+        return product.name.toLowerCase().includes(this.selectedProduct.toLowerCase())
       });
     }
   }
@@ -114,61 +123,66 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
     console.log(event.value,'value');
     
     this.productSalesForm.controls['price'].setValue(query.retail),
+    this.productSalesForm.controls['barcode'].setValue(query.barcode ),
       this.productSalesForm.controls['productName'].setValue(query.name),
-      this.productSalesForm.controls['barcode'].setValue(query.barcode);
     this.productSalesForm.controls['quantity'].valueChanges.subscribe((res) => {
       this.checkTotalPrice = res * this.productSalesForm.value.price;
       this.productSalesForm.controls['totalPrice'].setValue(
         this.checkTotalPrice
       );
     });
-    // this.selectedName =null
+    // if (this.productSalesForm.get('barcode')?.valid) {
+    //   this.productSalesForm.controls['barcode'].setValue(this.productSalesForm.controls['barcode'].valueChanges)
+       
+        
+      
+  
+      
+      
+    // }
+   
 
-    // this.itemsService.getProductByName(query.name).subscribe((response:any) => {
-    //   // this.productSalesForm.controls['barcode'].setValue('12552')
-    //   this.productSalesForm.controls['productName'].setValue(response[0].name)
+    // this.itemsService.getProductByName(query.name).subscribe((response: any) => {
+    //   if (!query.barcode) {
+    //     this.productSalesForm.controls['price'].setValue(response[0].retail),
+    //       this.productSalesForm.controls['productName'].setValue(response[0].name)
+    //       this.productSalesForm.controls['quantity'].valueChanges.subscribe((res) => {
+    //          this.checkTotalPrice = res * this.productSalesForm.value.price;
+    //          this.productSalesForm.controls['totalPrice'].setValue(
+    //             this.checkTotalPrice
+    //           );
+    //       });
+    //     this.barcodeChange(response[0].barcode)
+         
+       }
+     
 
-    // })
-  }
- 
-  editProduct() {
-    this.mode = false
-    this.editProductForm(this.productEditBarcode)
     
+
+ 
+
+  barcodeChange(event: any) {
+    console.log(event);
+    
+  
+  }
    
     
-  }
 
-  editProductForm(id: any) {
-    this.itemsService.getProductByBarcode(id).subscribe((response: any) => {
-      this.productSalesForm.controls['barcode'].setValue(response.barcode);
-      this.productSalesForm.controls['price'].setValue(response.retail),
-        this.productSalesForm.controls['productName'].setValue(response.name),
-        this.productSalesForm.controls['quantity'].setValue(response.quantity)
-        this.productSalesForm.controls['quantity'].setValue(response.totalPrice)
-      
-      
-        
 
-    })  
-  }
+
 
   submitData() {
-    if (this.mode) {
+
       this.sendForm.emit(this.productSalesForm.value);
       console.log(this.productSalesForm.value,'form value');
       
       this.productSalesForm.reset();
      
       
-    }
-    else {
-      this.productEditBarcode = JSON.parse(localStorage.getItem('productEditBarcode') || 'null')
-      console.log(this.productEditBarcode);
-      this.productSalesForm.controls
-      
-      
-    }
+  
+   
+  
     
   }
 

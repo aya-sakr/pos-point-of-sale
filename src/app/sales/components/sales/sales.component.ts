@@ -9,20 +9,12 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  styleUrls: ['./sales.component.scss'],
 })
 export class SalesComponent {
-  productListParent:any[]=[]
+  productListParent: any[] = [];
   recieveForm(data: any) {
-    this.productListParent.push(data)
+    this.productListParent.push(data);
     console.log(this.productListParent);
-    
-    
-    
-    
-    
-    
   }
- 
-
 }
