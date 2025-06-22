@@ -38,6 +38,7 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
   ngOnInit() {
     this.getProducts()
     this.initiatSalesForm();
+    this.  getProductByBarcode()
    
   }
    ngOnChanges() {
@@ -62,41 +63,43 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
       totalPrice: ['', Validators.required]
     });
 
-  
-  
-      this.productSalesForm.get('barcode')?.valueChanges.subscribe((value: any) => {
-        if ( (this.productSalesForm.get('barcode')?.valid)) {
-          // console.log(value)
-            this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
-            if (res) {
-              // console.log(res[0].name)
-
-              this.productSalesForm.controls['productName'].setValue(
-                res[0].name
-              ),
-                this.productSalesForm.controls['price'].setValue(res[0].retail),
-                this.productSalesForm.controls[
-                  'quantity'
-                ].valueChanges.subscribe((res: any) => {
-                  this.checkTotalPrice =
-                    res * this.productSalesForm.value.price;
-                  this.productSalesForm.controls['totalPrice'].setValue(
-                    this.checkTotalPrice
-                  );
-                 
-                });
-       
-           
-            } 
-          });
-        } 
-          
-        
-        
-      });
-    
      
    
+  }
+  getProductByBarcode() {
+    this.productSalesForm.get('barcode')?.valueChanges.subscribe((value: any) => {
+      if ( (this.productSalesForm.get('barcode')?.valid)) {
+        // console.log(value)
+          this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
+          if (res) {
+            // console.log(res[0].name)
+
+            this.productSalesForm.controls['productName'].setValue(
+              res[0].name
+            ),
+              this.productSalesForm.controls['price'].setValue(res[0].retail),
+              this.productSalesForm.controls[
+                'quantity'
+              ].valueChanges.subscribe((res: any) => {
+                this.checkTotalPrice =
+                  res * this.productSalesForm.value.price;
+                this.productSalesForm.controls['totalPrice'].setValue(
+                  this.checkTotalPrice
+                );
+               
+              });
+     
+         
+          } 
+        });
+      } 
+        
+      
+      
+    });
+  
+   
+    
   }
   onProductChange(event: any) {
     console.log(event);
@@ -166,18 +169,14 @@ export class ProductSalesFormComponent implements OnInit,OnChanges {
     
   
   }
-   
-    
-
-
-
-
   submitData() {
 
       this.sendForm.emit(this.productSalesForm.value);
-      console.log(this.productSalesForm.value,'form value');
-      
-      this.productSalesForm.reset();
+      // console.log(this.productSalesForm.value, 'form value');
+      // this.productSalesForm.get('barcode')?.valueChanges == this.productSalesForm.value.barcode
+      // console.log(this.productSalesForm.value.barcode,'barcode');
+    
+       this.productSalesForm.reset();
      
       
   

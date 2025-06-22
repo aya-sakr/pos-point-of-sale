@@ -1,24 +1,6 @@
 {
   "items": [
     {
-      "id": "ddc9",
-      "barcode": "147852",
-      "name": "white",
-      "purchase": "40",
-      "wholesale": "50",
-      "retail": "60",
-      "quantity": "10"
-    },
-    {
-      "id": "e34d",
-      "barcode": "1478521",
-      "name": "mo3ater",
-      "purchase": "30",
-      "wholesale": "40",
-      "retail": "50",
-      "quantity": "5"
-    },
-    {
       "id": "10a6",
       "barcode": "147852369",
       "name": "toka",
@@ -55,7 +37,16 @@
       "quantity": "9"
     },
     {
-      "id": "b861",
+      "id": "630d",
+      "barcode": "12493772",
+      "name": "abdelrhman",
+      "purchase": "10",
+      "wholesale": "12",
+      "retail": "13",
+      "quantity": "100"
+    },
+    {
+      "id": "a686",
       "barcode": "",
       "name": "cream",
       "purchase": "10",

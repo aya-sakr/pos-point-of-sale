@@ -1,7 +1,7 @@
 <div class="container">
   <div class="search-product" *ngIf="tableData?.length">
   
-    <input type="search" pInputText placeholder="Search..."    [(ngModel)]="searchText" (ngModelChange)="onProductSearch($event)" >
+    <input type="search" pInputText placeholder="Search..."  [(ngModel)]="searchText" >
   </div>
 
   
@@ -38,25 +38,25 @@
                 pButton
                 type="button"
                 icon="pi pi-minus"
-                (click)="decreaseQuantity()"
+                (click)="decreaseQuantity(i)"
               ></button>
               <input
                 type="text"
                 class="center-input"
                 pInputText
-                (valueChange)="onQuantityChange($event)"
+                (valueChange)="onQuantityChange($event,i)"
                 [(ngModel)]="product.quantity"
               />
               <button
                 pButton
                 type="button"
                 icon="pi pi-plus"
-                (click)="increaseQuantity()"
+                (click)="increaseQuantity(i)"
               ></button>
             </div>
           </td>
           <td>{{ product.priceType }}</td>
-          <td>{{ this.totalPrice ? this.totalPrice : product.totalPrice }}</td>
+          <td>{{product.totalPrice }}</td>
           <td>
             <button
               type="button"
@@ -70,5 +70,37 @@
       </ng-template>
     </p-table>
   </div>
+  <div class="product-pill" *ngIf="tableData?.length">
+    <form [formGroup]="productPillForm" (ngSubmit)="submitPill()" class="pill-form">
+      <div class="row ">
+          <div class="col-12 quantity-content">
+              <label class="quantity-label"> Sum Total Quantity :</label>
+              <input type='text' pInputText class="center-input"  formControlName="sumTotalQuantity"  >
+              
+          </div>
+       </div>
+       <div class="row ">
+          <div class="col-12">
+              <label class="price-label"> Sum Total Price :</label>
+              <input type='text' pInputText class="center-input"  formControlName="sumTotalPrice">
+              
+          </div>
+       </div>
+       <div class="row form-buttons">
+          <div class="col-4">
+              <button type="button" class=" btn btn-danger" (click)="deletPill()">Delete</button>
+          </div>
+         
+          <div class="col-4">
+              <button type="submit" class=" btn btn-primary" >Pay</button>
+          </div>
+          <div class="col-4">
+              <button type="button" class="btn btn-success">Pay&Print</button> 
+          </div>
+        </div>
+    </form>
+  </div>  
+  
+  
 
 </div>

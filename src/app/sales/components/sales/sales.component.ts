@@ -13,8 +13,12 @@ export interface PeriodicElement {
 })
 export class SalesComponent {
   productListParent: any[] = [];
-  recieveForm(data: any) {
-    this.productListParent.push(data);
-    console.log(this.productListParent);
+  recieveForm(data: any[]) {
+    
+      this.productListParent.push(data)
+      
+    
+  
+  
   }
 }
