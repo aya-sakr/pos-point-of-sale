@@ -45,7 +45,14 @@ export class ItemsService {
     return this.http.get(this.apiUrl,{params});
     
   }
-
+  updateBarcodeOnly(id: string, barcode: any) {
+    return this.http.patch(`${this.apiUrl}/${id}`, {
+      barcode: barcode
+    });
+  } postSalesProduct(salesProduct: any) {
+    return this.http.post(this.apiUrl,salesProduct)
+    
+  }
 }
 
 

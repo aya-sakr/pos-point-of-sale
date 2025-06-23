@@ -46,13 +46,22 @@
       "quantity": "100"
     },
     {
-      "id": "a686",
+      "id": "a115",
+      "barcode": "14141414",
+      "name": "lolo",
+      "purchase": "20",
+      "wholesale": "30",
+      "retail": "40",
+      "quantity": "10"
+    },
+    {
+      "id": "c235",
       "barcode": "",
       "name": "cream",
       "purchase": "10",
-      "wholesale": "20",
-      "retail": "30",
-      "quantity": "5"
+      "wholesale": "13",
+      "retail": "15",
+      "quantity": "25"
     }
   ]
 }
