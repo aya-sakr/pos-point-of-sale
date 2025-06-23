@@ -55,13 +55,13 @@
       "quantity": "10"
     },
     {
-      "id": "c235",
-      "barcode": "",
+      "barcode": "101010",
       "name": "cream",
       "purchase": "10",
       "wholesale": "13",
       "retail": "15",
-      "quantity": "25"
+      "quantity": "25",
+      "id": "c235"
     }
   ]
 }
