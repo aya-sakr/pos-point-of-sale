@@ -13,13 +13,14 @@ export class ProductSalesListComponent implements OnInit {
   productPillForm!: FormGroup;
   filterProduct: any[] = [];
   formData: any[] = [];
+  foundMode: boolean = false;
   totalPrice: any;
   searchText: any;
+  data: any[] = [];
 
   constructor(
     private toaster: ToastrService,
     private fb: FormBuilder,
-    private router: Router,
     private sharedSalesService: SalesSharedService
   ) {
     this.productPillForm = this.fb.group({
@@ -31,10 +32,12 @@ export class ProductSalesListComponent implements OnInit {
   ngOnInit() {
     this.loadSharedData();
   }
-  
+
   loadSharedData() {
     this.sharedSalesService.getFormData().subscribe((response) => {
       if (!response) return;
+
+      // this.originalData = [...res]
       const newProducts = Array.isArray(response) ? response : [response];
 
       newProducts.forEach((product: any) => {
@@ -44,6 +47,7 @@ export class ProductSalesListComponent implements OnInit {
 
         if (indexExist === -1) {
           this.formData.push(product);
+          this.data = this.formData;
           this.sumTotals();
         } else {
           this.formData[indexExist].quantity = Number(product.quantity) || 1;
@@ -53,10 +57,26 @@ export class ProductSalesListComponent implements OnInit {
     });
   }
   onSearch(event: any) {
-    this.filterProduct = this.formData.filter((item: any) => {
-      return item.productName.toLowerCase().includes(event.toLowerCase());
-    });
-    this.formData = this.filterProduct;
+    if (this.searchText && this.searchText.trim() !== '') {
+      this.filterProduct = this.formData.filter((item: any) => {  
+        return item.productName
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase());
+      });
+      this.formData = this.filterProduct 
+
+    
+   
+    
+    } else {
+      this.formData = this.data;
+   
+    }
+  }
+
+  clearSearchText() {
+    this.searchText = '';
+    this.formData = this.data;
   }
 
   onQuantityChange(event: any, index: number) {

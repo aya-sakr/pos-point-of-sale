@@ -107,15 +107,18 @@ export class ProductSalesFormComponent implements OnInit {
  
 
   searchByName() {
-    if (!this.selectedProduct) {
-      this.productList = this.allProducts;
-    } else if (this.selectedProduct) {
+   
+    if (this.selectedProduct && this.selectedProduct.trim() !== '') {
       this.productList = this.allProducts.filter((product: any) => {
         return product.name
           .toLowerCase()
           .includes(this.selectedProduct.toLowerCase());
       });
+    } else {
+      this.productList = this.allProducts
     }
+      
+    
   }
 
   onProductSelect(event: any) {
@@ -186,5 +189,6 @@ export class ProductSalesFormComponent implements OnInit {
     });
 
     this.quantityInput.nativeElement.blur();
+    this.selectedProduct = ''
   }
 }

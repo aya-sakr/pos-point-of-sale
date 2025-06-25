@@ -1,19 +1,20 @@
-<div class="container">
-  <div class="search-product" *ngIf="formData.length">
+<div class=" row container">
+  <div class="search-product col-md-6" *ngIf="formData.length">
   
-    <input type="search" pInputText placeholder="Search..."  [(ngModel)]="searchText"  (ngModelChange)="onSearch($event)">
+    <input type="search" pInputText placeholder="Search..."  [(ngModel)]="searchText" (ngModelChange)="onSearch($event)">
+    <span class="clear-btn" *ngIf="searchText" (click)="clearSearchText()">×</span>
   </div>
 
   
 
 
-  <div class="card " *ngIf="formData.length">
+  <div class="card " *ngIf="formData.length > 0">
     
     <p-table
       [value]="formData"
       [paginator]="true"
       [rows]="5"
-      [tableStyle]="{ 'min-width': '50rem' }"
+      [tableStyle]="{'min-width': '50rem' }"
       [rowsPerPageOptions]="[5, 10, 20]"
     >
       <ng-template pTemplate="header">
@@ -29,6 +30,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-product let-i="rowIndex">
         <tr>
+         
           <td>{{ i + 1 }}</td>
           <td>{{ product.productName }}</td>
           <td>{{ product.price }}</td>
@@ -67,9 +69,16 @@
             </button>
           </td>
         </tr>
+       
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr *ngIf="!foundMode">
+          <td colspan="7">No product found.</td>
+        </tr>
       </ng-template>
     </p-table>
   </div>
+  
   <div class="product-pill" *ngIf="formData.length">
     <form [formGroup]="productPillForm" (ngSubmit)="submitPill()" class="pill-form">
       <div class="row ">
