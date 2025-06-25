@@ -1,16 +1,16 @@
 <div class="container">
-  <div class="search-product" *ngIf="tableData?.length">
+  <div class="search-product" *ngIf="formData.length">
   
-    <input type="search" pInputText placeholder="Search..."  [(ngModel)]="searchText" >
+    <input type="search" pInputText placeholder="Search..."  [(ngModel)]="searchText"  (ngModelChange)="onSearch($event)">
   </div>
 
   
 
 
-  <div class="card " *ngIf="tableData?.length">
+  <div class="card " *ngIf="formData.length">
     
     <p-table
-      [value]="tableData"
+      [value]="formData"
       [paginator]="true"
       [rows]="5"
       [tableStyle]="{ 'min-width': '50rem' }"
@@ -70,7 +70,7 @@
       </ng-template>
     </p-table>
   </div>
-  <div class="product-pill" *ngIf="tableData?.length">
+  <div class="product-pill" *ngIf="formData.length">
     <form [formGroup]="productPillForm" (ngSubmit)="submitPill()" class="pill-form">
       <div class="row ">
           <div class="col-12 quantity-content">

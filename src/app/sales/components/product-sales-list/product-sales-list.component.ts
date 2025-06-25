@@ -1,107 +1,106 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
- 
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SalesSharedService } from '../../Service/sales-shared.service';
 
 @Component({
   selector: 'app-product-sales-list',
   templateUrl: './product-sales-list.component.html',
   styleUrls: ['./product-sales-list.component.scss'],
 })
-export class ProductSalesListComponent implements OnInit,OnChanges {
-  @Input() tableData: any[] = [];
+export class ProductSalesListComponent implements OnInit {
+  productPillForm!: FormGroup;
+  filterProduct: any[] = [];
+  formData: any[] = [];
   totalPrice: any;
   searchText: any;
-  productPillForm!: FormGroup;
 
-  constructor(private toaster: ToastrService, private fb: FormBuilder) {}
+  constructor(
+    private toaster: ToastrService,
+    private fb: FormBuilder,
+    private router: Router,
+    private sharedSalesService: SalesSharedService
+  ) {
+    this.productPillForm = this.fb.group({
+      sumTotalQuantity: [],
+      sumTotalPrice: [],
+    });
+  }
 
   ngOnInit() {
-    this.initaitForm();
- 
-   
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['tableData'] && this.tableData.length > 0) {
-      console.log(this.tableData,'onchanges');
-      this.sumTotals()
-      
-      
-    }
-  }
- 
- 
-  deletProduct(index: number) {
-    console.log(this.tableData);
-    this.tableData.splice(index, 1);
-    this.toaster.success('The product deleted ', 'success');
+    this.loadSharedData();
   }
   
+  loadSharedData() {
+    this.sharedSalesService.getFormData().subscribe((response) => {
+      if (!response) return;
+      const newProducts = Array.isArray(response) ? response : [response];
+
+      newProducts.forEach((product: any) => {
+        const indexExist = this.formData.findIndex(
+          (p) => p.barcode === product.barcode
+        );
+
+        if (indexExist === -1) {
+          this.formData.push(product);
+          this.sumTotals();
+        } else {
+          this.formData[indexExist].quantity = Number(product.quantity) || 1;
+          this.sumTotals();
+        }
+      });
+    });
+  }
+  onSearch(event: any) {
+    this.filterProduct = this.formData.filter((item: any) => {
+      return item.productName.toLowerCase().includes(event.toLowerCase());
+    });
+    this.formData = this.filterProduct;
+  }
 
   onQuantityChange(event: any, index: number) {
-    this.tableData[index].quantity = event
-   
-    this.tableData[index].totalPrice = this.tableData[index].price * event
-    this.sumTotals()
-   
+    this.formData[index].quantity = event;
 
-  }
-  sumTotals() {
-    console.log('Running sumTotals', this.tableData);
-
-    const totalQuantity = this.tableData.reduce((sum, item) => sum + Number(item.quantity), 0)
-    const totalPrice = this.tableData.reduce((sum, item) => sum + Number(item.totalPrice), 0);
-    this.productPillForm.patchValue({
-      sumTotalQuantity: totalQuantity,
-      sumTotalPrice: totalPrice
-
-    })
-
+    this.formData[index].totalPrice = this.formData[index].price * event;
+    this.sumTotals();
   }
   decreaseQuantity(index: number) {
-    if (this.tableData[index].quantity > 1) {
-      this.tableData[index].quantity--;
-      this.onQuantityChange(this.tableData[index].quantity, index);
-  
-      
+    if (this.formData[index].quantity > 1) {
+      this.formData[index].quantity--;
+      this.onQuantityChange(this.formData[index].quantity, index);
+      this.sumTotals();
     }
   }
   increaseQuantity(index: number) {
-    this.tableData[index].quantity++;
-    this.onQuantityChange(this.tableData[index].quantity, index);
-  
- 
- 
-   
+    this.formData[index].quantity++;
+    this.onQuantityChange(this.formData[index].quantity, index);
+    this.sumTotals();
   }
+  sumTotals() {
+    const totalQuantity = this.formData.reduce(
+      (acc, item) => acc + Number(item.quantity || 0),
+      0
+    );
+    const totalPrice = this.formData.reduce(
+      (acc, item) => acc + Number(item.totalPrice || 0),
+      0
+    );
 
-  initaitForm() {
-    this.productPillForm = this.fb.group({
-      sumTotalQuantity: [0],
-      sumTotalPrice: [0],
-   
-
+    this.productPillForm.patchValue({
+      sumTotalQuantity: totalQuantity,
+      sumTotalPrice: totalPrice,
     });
-  
-   
- 
-  
   }
-  
- 
+  deletProduct(index: number) {
+    this.formData.splice(index, 1);
+    this.toaster.success('The product deleted ', 'success');
+  }
 
   submitPill() {
     console.log(this.productPillForm.value);
-    
   }
-  deletPill() { }
-
- }
-
+  deletPill() {
+    this.productPillForm.reset();
+  }
+}

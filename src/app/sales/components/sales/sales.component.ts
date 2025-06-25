@@ -12,13 +12,13 @@ export interface PeriodicElement {
   styleUrls: ['./sales.component.scss'],
 })
 export class SalesComponent {
-  productListParent: any[] = [];
-  recieveForm(data: any[]) {
+
+
     
-      this.productListParent.push(data)
+  
       
     
   
   
-  }
+  
 }

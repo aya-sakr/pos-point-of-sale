@@ -1,3 +1,4 @@
+
 import {
   Component,
   ElementRef,
@@ -7,9 +8,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 import { ItemsService } from 'src/app/items/services/items.service';
+import { SalesSharedService } from '../../Service/sales-shared.service';
+import { distinctUntilChanged } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-sales-form',
@@ -18,20 +22,21 @@ import { ItemsService } from 'src/app/items/services/items.service';
 })
 export class ProductSalesFormComponent implements OnInit {
   @ViewChild('quantityInput') quantityInput!: ElementRef;
-  @Output() sendForm = new EventEmitter<any>();
   productSalesForm!: FormGroup;
   allProducts: any[] = [];
   productList: any[] = [];
   selectedPric: number = 0;
   totalSalesPrice: number = 0;
   mode: boolean = true;
-  selectedProduct: any;
+  selectedProduct: any = null;
   productId: string = '';
 
   constructor(
     private fb: FormBuilder,
     private itemsService: ItemsService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private router: Router,
+    private shraredSalesService: SalesSharedService
   ) {
     this.productSalesForm = this.fb.group({
       barcode: ['', [Validators.required, Validators.pattern('[0-9]{6,}')]],
@@ -46,9 +51,9 @@ export class ProductSalesFormComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.getProductByBarcode();
+
     // upate total price when Quantity change
-    this.productSalesForm
+      this.productSalesForm
       .get('quantity')
       ?.valueChanges.subscribe((qty: number) => {
         this.updateTotalPrice(qty);
@@ -58,13 +63,16 @@ export class ProductSalesFormComponent implements OnInit {
     this.productSalesForm
       .get('priceType')
       ?.valueChanges.subscribe((type: string) => {
-        this.updatePrice(type);
+        if (this.productSalesForm.value.productName) {
+          this.updatePrice(type);
+        }
       });
 
     this.productSalesForm.get('price')?.valueChanges.subscribe((res) => {
       const quantity = this.productSalesForm.value.quantity;
       this.updateTotalPrice(quantity);
     });
+    this.getProductByBarcode();
   }
 
   getProducts() {
@@ -76,9 +84,12 @@ export class ProductSalesFormComponent implements OnInit {
   getProductByBarcode() {
     this.productSalesForm
       .get('barcode')
-      ?.valueChanges.subscribe((value: any) => {
+      ?.valueChanges.pipe(distinctUntilChanged())
+      .subscribe((value: any) => {
         if (this.productSalesForm.get('barcode')?.valid) {
           this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
+            console.log(res, 'barcode');
+
             if (res) {
               const product = res[0];
               this.productSalesForm.patchValue({
@@ -93,11 +104,12 @@ export class ProductSalesFormComponent implements OnInit {
         }
       });
   }
+ 
 
   searchByName() {
     if (!this.selectedProduct) {
       this.productList = this.allProducts;
-    } else {
+    } else if (this.selectedProduct) {
       this.productList = this.allProducts.filter((product: any) => {
         return product.name
           .toLowerCase()
@@ -108,7 +120,6 @@ export class ProductSalesFormComponent implements OnInit {
 
   onProductSelect(event: any) {
     const query = event.value;
-
     this.itemsService
       .getProductByName(query.name)
       .subscribe((response: any) => {
@@ -155,13 +166,25 @@ export class ProductSalesFormComponent implements OnInit {
       const newBarcode = this.productSalesForm.value.barcode;
       this.itemsService
         .updateBarcodeOnly(this.productId, newBarcode)
-        .subscribe((res) => {
+        .subscribe(() => {
           this.toaster.success('The product Updated ', 'Success');
         });
       this.mode = true;
     } else {
-      // this.sendForm.emit()
-      console.log(product);
+      const formData = this.productSalesForm.value;
+      // localStorage.setItem('formData',JSON.stringify(formData))
+
+      this.shraredSalesService.sendformData(formData);
+
+      this.resetForm();
     }
+  }
+  resetForm() {
+    this.productSalesForm.reset((this.selectedPric = 0));
+    this.productSalesForm.patchValue({
+      priceType: 'retail',
+    });
+
+    this.quantityInput.nativeElement.blur();
   }
 }
