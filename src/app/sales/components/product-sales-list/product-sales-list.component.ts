@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SalesSharedService } from '../../Service/sales-shared.service';
 
@@ -11,9 +10,9 @@ import { SalesSharedService } from '../../Service/sales-shared.service';
 })
 export class ProductSalesListComponent implements OnInit {
   productPillForm!: FormGroup;
+  showTableMode: boolean = false;
   filterProduct: any[] = [];
   formData: any[] = [];
-  foundMode: boolean = false;
   totalPrice: any;
   searchText: any;
   data: any[] = [];
@@ -48,6 +47,7 @@ export class ProductSalesListComponent implements OnInit {
         if (indexExist === -1) {
           this.formData.push(product);
           this.data = this.formData;
+          this.showTableMode = true;
           this.sumTotals();
         } else {
           this.formData[indexExist].quantity = Number(product.quantity) || 1;
@@ -56,21 +56,16 @@ export class ProductSalesListComponent implements OnInit {
       });
     });
   }
-  onSearch(event: any) {
+  onSearch() {
     if (this.searchText && this.searchText.trim() !== '') {
-      this.filterProduct = this.formData.filter((item: any) => {  
+      this.filterProduct = this.formData.filter((item: any) => {
         return item.productName
           .toLowerCase()
           .includes(this.searchText.toLowerCase());
       });
-      this.formData = this.filterProduct 
-
-    
-   
-    
+      this.formData = this.filterProduct;
     } else {
       this.formData = this.data;
-   
     }
   }
 
