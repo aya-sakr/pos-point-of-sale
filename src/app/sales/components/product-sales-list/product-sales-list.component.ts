@@ -35,8 +35,6 @@ export class ProductSalesListComponent implements OnInit {
   loadSharedData() {
     this.sharedSalesService.getFormData().subscribe((response) => {
       if (!response) return;
-
-      // this.originalData = [...res]
       const newProducts = Array.isArray(response) ? response : [response];
 
       newProducts.forEach((product: any) => {

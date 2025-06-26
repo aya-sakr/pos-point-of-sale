@@ -1,58 +1,58 @@
 {
   "items": [
     {
-      "id": "10a6",
       "barcode": "147852369",
       "name": "toka",
       "purchase": "10",
       "wholesale": "20",
       "retail": "30",
-      "quantity": "3"
+      "quantity": "30",
+      "id": "10a6"
     },
     {
-      "id": "96f6",
       "barcode": "123333",
       "name": "معجون اسنان",
       "purchase": "10",
       "wholesale": "20",
       "retail": "30",
-      "quantity": "10"
+      "quantity": "30",
+      "id": "96f6"
     },
     {
-      "id": "c459",
       "barcode": "25852222",
       "name": "فرشاه اسنان",
       "purchase": "5",
       "wholesale": "10",
       "retail": "20",
-      "quantity": "4"
+      "quantity": "30",
+      "id": "c459"
     },
     {
-      "id": "8f76",
       "barcode": "7892588",
       "name": "lipglass",
       "purchase": "10",
       "wholesale": "20",
       "retail": "30",
-      "quantity": "9"
+      "quantity": "30",
+      "id": "8f76"
     },
     {
-      "id": "630d",
       "barcode": "12493772",
       "name": "abdelrhman",
       "purchase": "10",
       "wholesale": "12",
       "retail": "13",
-      "quantity": "100"
+      "quantity": "30",
+      "id": "630d"
     },
     {
-      "id": "a115",
       "barcode": "14141414",
       "name": "lolo",
       "purchase": "20",
       "wholesale": "30",
       "retail": "40",
-      "quantity": "10"
+      "quantity": "30",
+      "id": "a115"
     },
     {
       "barcode": "101010",
@@ -60,7 +60,7 @@
       "purchase": "10",
       "wholesale": "13",
       "retail": "15",
-      "quantity": "25",
+      "quantity": "30",
       "id": "c235"
     }
   ]

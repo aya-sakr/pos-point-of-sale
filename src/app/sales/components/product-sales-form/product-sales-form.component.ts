@@ -115,7 +115,7 @@ export class ProductSalesFormComponent implements OnInit {
           .includes(this.selectedProduct.toLowerCase());
       });
     } else {
-      this.productList = this.allProducts
+      this.productList = [...this.allProducts]
     }
       
     
