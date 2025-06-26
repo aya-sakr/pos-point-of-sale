@@ -14,7 +14,7 @@
 
   <div class="card" *ngIf="showTableMode">
     <p-table
-      [value]="formData"
+      [value]="searchText ? filterProduct : formData"
       [paginator]="true"
       [rows]="5"
       [tableStyle]="{ 'min-width': '50rem' }"

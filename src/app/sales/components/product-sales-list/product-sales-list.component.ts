@@ -15,7 +15,7 @@ export class ProductSalesListComponent implements OnInit {
   formData: any[] = [];
   totalPrice: any;
   searchText: any;
-  data: any[] = [];
+  
 
   constructor(
     private toaster: ToastrService,
@@ -46,7 +46,6 @@ export class ProductSalesListComponent implements OnInit {
 
         if (indexExist === -1) {
           this.formData.push(product);
-          this.data = this.formData;
           this.showTableMode = true;
           this.sumTotals();
         } else {
@@ -63,15 +62,13 @@ export class ProductSalesListComponent implements OnInit {
           .toLowerCase()
           .includes(this.searchText.toLowerCase());
       });
-      this.formData = this.filterProduct;
-    } else {
-      this.formData = this.data;
     }
+  
   }
 
   clearSearchText() {
     this.searchText = '';
-    this.formData = this.data;
+   
   }
 
   onQuantityChange(event: any, index: number) {
