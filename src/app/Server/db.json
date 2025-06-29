@@ -1,14 +1,17 @@
 {
-  "items": [
+  "users": [
     {
-      "barcode": "147852369",
-      "name": "toka",
-      "purchase": "10",
-      "wholesale": "20",
-      "retail": "30",
-      "quantity": "30",
-      "id": "10a6"
+      "id": "7ba2",
+      "username": "aya",
+      "password": "gggg"
     },
+    {
+      "id": "4ea3",
+      "username": "khloud",
+      "password": "gtgt"
+    }
+  ],
+  "items": [
     {
       "barcode": "123333",
       "name": "معجون اسنان",
@@ -62,6 +65,17 @@
       "retail": "15",
       "quantity": "30",
       "id": "c235"
+    }
+  ],
+  "sales": [
+    {
+      "id": "",
+      "barcode": "123333",
+      "productName": "معجون اسنان",
+      "priceType": "retail",
+      "quantity": "10",
+      "price": "30",
+      "totalPrice": 300
     }
   ]
 }

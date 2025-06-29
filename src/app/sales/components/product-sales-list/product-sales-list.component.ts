@@ -29,10 +29,11 @@ export class ProductSalesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadSharedData();
+    this.getSalesProduct();
   }
 
-  loadSharedData() {
+  getSalesProduct() {
+    
     this.sharedSalesService.getFormData().subscribe((response) => {
       if (!response) return;
       const newProducts = Array.isArray(response) ? response : [response];

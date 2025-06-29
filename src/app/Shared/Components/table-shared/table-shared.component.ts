@@ -43,8 +43,8 @@ export class TableSharedComponent implements OnChanges, OnInit,AfterViewInit {
     if (this.userData) {
       this.dataSource= new MatTableDataSource<Iusers>(this.userData)
     }
-    if (this.Paginator) {
-      this.dataSource.paginator =this.openDialog
+    if (this.Paginator &&this.dataSource) {
+      this.dataSource.paginator =this.Paginator
     }
     
   }
