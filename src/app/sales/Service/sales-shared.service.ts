@@ -11,15 +11,12 @@ export class SalesSharedService {
   constructor() { }
   sendformData(data: any[]) {
     this.dataSource.next(data)
+    
     localStorage.setItem('formData', JSON.stringify(data));
     
   }
   getFormData(): Observable<any[]> {
     return this.dataSource.asObservable()
   }
-  // private loadFormStorage(): any[] {
-  //   const data = localStorage.getItem('formData');
-  //   return data ? JSON.parse(data) : [];
-
-  // }
+  
 }

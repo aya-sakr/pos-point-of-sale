@@ -2,9 +2,7 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -55,7 +53,8 @@ export class ProductSalesFormComponent implements OnInit {
     // upate total price when Quantity change
       this.productSalesForm
       .get('quantity')
-      ?.valueChanges.subscribe((qty: number) => {
+        ?.valueChanges.subscribe((qty: number) => {
+         
         this.updateTotalPrice(qty);
       });
 
@@ -88,7 +87,7 @@ export class ProductSalesFormComponent implements OnInit {
       .subscribe((value: any) => {
         if (this.productSalesForm.get('barcode')?.valid) {
           this.itemsService.getProductByBarcode(value).subscribe((res: any) => {
-            console.log(res, 'barcode');
+           
 
             if (res) {
               const product = res[0];
@@ -96,8 +95,10 @@ export class ProductSalesFormComponent implements OnInit {
                 productName: product.name,
                 price: product.retail,
                 priceType: 'retail',
+                quantity: 1
               });
               this.selectedPric = product.retail;
+              this.totalSalesPrice = this.selectedPric
               this.quantityInput.nativeElement.focus();
             }
           });
@@ -126,6 +127,8 @@ export class ProductSalesFormComponent implements OnInit {
     this.itemsService
       .getProductByName(query.name)
       .subscribe((response: any) => {
+   
+        
         const product = response[0];
         if (product.barcode === '') {
           this.mode = false;
@@ -175,9 +178,11 @@ export class ProductSalesFormComponent implements OnInit {
       this.mode = true;
     } else {
       const formData = this.productSalesForm.value;
-      // localStorage.setItem('formData',JSON.stringify(formData))
+     
 
       this.shraredSalesService.sendformData(formData);
+
+      // this.updateQuantity(formData.quantity)
 
       this.resetForm();
     }
@@ -191,4 +196,12 @@ export class ProductSalesFormComponent implements OnInit {
     this.quantityInput.nativeElement.blur();
     this.selectedProduct = ''
   }
+  // updateQuantity(quantity: number) {
+  //   this.itemsService.updateQuantity(this.productId, quantity).subscribe((res: any) => {
+  //     console.log(res);
+      
+     
+  //   })
+    
+  // }
 }

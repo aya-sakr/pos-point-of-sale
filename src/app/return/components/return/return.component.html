@@ -1,1 +1,24 @@
-<p>return works!</p>
+<div class="container">
+   
+    <div class="row">
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="p-field">
+                <label for="barcode" class="custom-label">Barcode</label>
+                <input
+                  id="barcode"
+                  (ngModelChange)=" getreturnProduct($event)"
+                 [(ngModel)]="productBarcode"
+                  type="text"
+                  pInputText
+
+                />
+
+        </div>
+    </div>
+  
+  
+</div>
+
+   

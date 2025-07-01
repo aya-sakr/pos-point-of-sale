@@ -1,0 +1,13 @@
+.container{
+    .row{
+        .p-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            .custom-label{
+                padding-bottom: .5rem
+              
+            }  
+          }
+    }
+}

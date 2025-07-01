@@ -9,6 +9,12 @@
       "id": "4ea3",
       "username": "khloud",
       "password": "gtgt"
+    },
+    {
+      "id": "fdad",
+      "userRole": "users",
+      "username": "lolo",
+      "password": "123322"
     }
   ],
   "items": [
@@ -18,7 +24,7 @@
       "purchase": "10",
       "wholesale": "20",
       "retail": "30",
-      "quantity": "30",
+      "quantity": 1,
       "id": "96f6"
     },
     {
@@ -27,17 +33,9 @@
       "purchase": "5",
       "wholesale": "10",
       "retail": "20",
-      "quantity": "30",
-      "id": "c459"
-    },
-    {
-      "barcode": "7892588",
-      "name": "lipglass",
-      "purchase": "10",
-      "wholesale": "20",
-      "retail": "30",
-      "quantity": "30",
-      "id": "8f76"
+      "quantity": 1,
+      "id": "c459",
+      "quantityToMins": "10"
     },
     {
       "barcode": "12493772",
@@ -54,7 +52,7 @@
       "purchase": "20",
       "wholesale": "30",
       "retail": "40",
-      "quantity": "30",
+      "quantity": 19,
       "id": "a115"
     },
     {
@@ -63,7 +61,7 @@
       "purchase": "10",
       "wholesale": "13",
       "retail": "15",
-      "quantity": "30",
+      "quantity": 26,
       "id": "c235"
     }
   ],

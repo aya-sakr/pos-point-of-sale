@@ -3,14 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Items } from 'src/app/Models/items';
 import { environment } from 'src/environment/environment';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
-  apiUrl:string="http://localhost:3000/items"
-
-
   constructor(private http: HttpClient) {
    
   }
@@ -49,6 +45,11 @@ export class ItemsService {
   updateBarcodeOnly(id: string, barcode: any) {
     return this.http.patch(`${environment.apiUrl}/items/${id}`, {
       barcode: barcode
+    });
+  }
+  updateQuantity(id: string, quantity: any) {
+    return this.http.patch(`${environment.apiUrl}/items/${id}`, {
+      quantity: quantity
     });
   }
 }

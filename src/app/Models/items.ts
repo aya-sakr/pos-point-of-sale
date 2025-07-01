@@ -5,7 +5,7 @@ export interface Items {
     wholesale: number,
     retail: number,
     quantity: number,
-    id?:string
+    id:string
   
     
 }

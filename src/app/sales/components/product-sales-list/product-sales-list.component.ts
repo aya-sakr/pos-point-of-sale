@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SalesSharedService } from '../../Service/sales-shared.service';
+import { ItemsService } from 'src/app/items/services/items.service';
+import { findIndex } from 'rxjs';
 
 @Component({
   selector: 'app-product-sales-list',
@@ -15,12 +17,15 @@ export class ProductSalesListComponent implements OnInit {
   formData: any[] = [];
   totalPrice: any;
   searchText: any;
-  
+  itemTotalQuantity: number = 0
+  id: string = ''
 
   constructor(
     private toaster: ToastrService,
     private fb: FormBuilder,
-    private sharedSalesService: SalesSharedService
+    private sharedSalesService: SalesSharedService,
+    private itemService: ItemsService
+ 
   ) {
     this.productPillForm = this.fb.group({
       sumTotalQuantity: [],
@@ -35,6 +40,8 @@ export class ProductSalesListComponent implements OnInit {
   getSalesProduct() {
     
     this.sharedSalesService.getFormData().subscribe((response) => {
+     
+      
       if (!response) return;
       const newProducts = Array.isArray(response) ? response : [response];
 
@@ -44,7 +51,9 @@ export class ProductSalesListComponent implements OnInit {
         );
 
         if (indexExist === -1) {
-          this.formData.push(product);
+        
+          
+          this.formData.push(product);    
           this.showTableMode = true;
           this.sumTotals();
         } else {
@@ -106,10 +115,53 @@ export class ProductSalesListComponent implements OnInit {
   deletProduct(index: number) {
     this.formData.splice(index, 1);
     this.toaster.success('The product deleted ', 'success');
+    this.sumTotals()
   }
 
-  submitPill() {
+  updateItemQuantity() {
+
+    
+  }
+
+  onPay() {
+    this.formData.forEach(product => {
+    
+      this.itemService.getProductByBarcode(product.barcode).subscribe((item: any) => {
+       
+        
+        const currentQuantity = item[0].quantity
+        console.log(currentQuantity, 'current');
+        const id = item[0].id
+        
+        const updateQuantity = currentQuantity - product.quantity
+        if (updateQuantity < 1) {
+          this.toaster.error ('Quantity not found ','Error')
+          
+        } else {
+          this.itemService.updateQuantity(id, updateQuantity).subscribe(() => {
+            this.toaster.success('Quantity Updated')
+           
+          })
+          
+        }
+      
+        
+       
+         
+      
+        
+      });
+      
+    })
+   
+
+      
+
+    
     console.log(this.productPillForm.value);
+    console.log(this.formData);
+    
+
   }
   deletPill() {
     this.productPillForm.reset();
