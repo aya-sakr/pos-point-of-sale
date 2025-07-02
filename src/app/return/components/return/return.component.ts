@@ -1,39 +1,34 @@
-
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ItemsService } from 'src/app/items/services/items.service';
 import { Items } from 'src/app/Models/items';
 
 @Component({
   selector: 'app-return',
   templateUrl: './return.component.html',
-  styleUrls: ['./return.component.scss']
+  styleUrls: ['./return.component.scss'],
 })
-export class ReturnComponent implements OnInit {
-  productBarcode: string = ''
-  returnProduct: Items[]=[]
-  constructor(private itemService: ItemsService) {
-  
-    
-  }
-  ngOnInit(): void {
-       
-  }
+export class ReturnComponent {
+  productBarcode: string = '';
+  returnProduct: Items[] = [];
+  returnQuantity: number = 1;
+  constructor(
+    private itemService: ItemsService,
+    private toaster: ToastrService
+  ) {}
+
   getreturnProduct(barcode: string) {
     this.itemService.getProductByBarcode(barcode).subscribe((res: Items[]) => {
-      this.returnProduct = res
-      console.log(this.returnProduct);
-      
-
-  
-    
-    
-    })
-    
-
-   
-      
-  
+      this.returnProduct = res;
+    });
   }
-  
-
+  returnItem() {
+    const totalQuantity = this.returnProduct[0].quantity;
+    const updateTotalQuantity = +totalQuantity + +this.returnQuantity;
+    this.itemService
+      .updateQuantity(this.returnProduct[0].id, updateTotalQuantity)
+      .subscribe(() => {
+        this.toaster.success(' Total Quantity upated', 'Success');
+      });
+  }
 }

@@ -17,6 +17,43 @@
 
         </div>
     </div>
+
+      <div class="product-details" *ngIf="returnProduct.length">
+        <p-table
+          [value]=" returnProduct"
+          [tableStyle]="{ 'min-width': '50rem' }"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th> Total Quantity</th>
+              <th> Return Quantity</th>
+              <th>Purchase Price</th>
+              <th>Wholesale Price</th>
+              <th>Retail Price</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-i="rowIndex">
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+              <td><input type="text"pInputText [(ngModel)]="returnQuantity" class="text-center"></td>
+              <td>{{ product.purchase}}</td>
+              <td>{{ product.wholesale}}</td>
+              <td>{{ product.retail}}</td>
+              <td>
+                <button class="btn btn-primary " type="button" (click)="returnItem()">Return</button>
+              </td>
+             
+            </tr>
+          </ng-template>
+          
+        </p-table>
+     </div>
+
   
   
 </div>

@@ -139,7 +139,7 @@ export class ProductSalesListComponent implements OnInit {
           
         } else {
           this.itemService.updateQuantity(id, updateQuantity).subscribe(() => {
-            this.toaster.success('Quantity Updated')
+            // this.toaster.success('Quantity Updated')
            
           })
           
